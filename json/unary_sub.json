@@ -4,7 +4,7 @@
 	"blank"   : ".",
 	"states"  : [ "scanright", "eraseone", "subone", "skip", "HALT" ],
 	"initial" : "scanright",
-	"finals"  : [ "HALT" ],
+	"finals"  : [ "HALT"],
 	"transitions" : {
 		"scanright": [
 			{ "read" : ".", "to_state": "scanright", "write": ".", "action": "RIGHT"},
@@ -23,10 +23,6 @@
 		"skip": [
 			{ "read" : ".", "to_state": "skip"     , "write": ".", "action": "LEFT"},
 			{ "read" : "1", "to_state": "scanright", "write": ".", "action": "RIGHT"}
-		],
-		"skip": [
-			{ "read" : ".", "to_state": "skip"     , "write": ".", "action": "LEFT"},
-			{ "read" : "1", "to_state": "scanright", "write": ".", "action": "RIGHT"}
 		]
-		 }
+	}
 }
