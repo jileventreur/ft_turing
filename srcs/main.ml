@@ -1,7 +1,8 @@
 open Json
 open Opt
+open Printf
 
-let print json =
+let print_header json =
 	print_endline ("name: " ^ json.name) ;
 	print_string "alphabet:" ;
 	let print_alphablet c =
@@ -11,8 +12,8 @@ let print json =
 	print_endline "" ;
 	print_string ("blank: ");
 	print_char json.blank ;
-	print_endline "";
-	print_string "states:" ;
+	print_endline ""
+	(* print_string "states:" ;
 	let print_states c =
 		print_string " ";
 		print_string c
@@ -20,15 +21,38 @@ let print json =
 	print_endline "" ;
 	print_string "finals:" ;
 	StringSet.iter print_states json.finals ;
-	print_endline "" ;
-	print_endline ("initial: " ^ json.initial) ;
-	print_endline "transitions:";
+	print_endline "" ; *)
+	(* print_endline ("initial: " ^ json.initial) ; *)
+	(* print_endline "transitions:";
 	let _print s = print_endline ("\t" ^ (fst s)) in
-	List.iter _print json.transitions
+	List.iter _print json.transitions *)
+
+let debug data =
+	print_endline ("name: " ^ data.name) ;
+	print_string "alphabet: [ " ;
+	let _print_alphabet c = print_char c ; print_string " " in
+	CharSet.iter _print_alphabet data.alphabet ;
+	print_endline "]"
 
 let () =
 	let argv = getopt Sys.argv in
-	print (extract argv.jsonfile)
+	print_endline argv.jsonfile ;
+	print_header (extract argv.jsonfile) ;
+
+	let data = {
+		name = "template name" ;
+		alphabet = CharSet.of_list [ 'd' ; 'a' ; 'b' ] ;
+		blank = '.' ;
+		table = [|
+			Normal( "testA", [|
+				Defined( 'a', Turing.Right, 1 )
+			|] )
+		|] ;
+		state_register = 1
+	} in
+	print_endline "---- ---- debug ---- ----" ;
+	print_endline ("input : " ^ argv.input) ;
+	debug data
 
 (*
 let () =

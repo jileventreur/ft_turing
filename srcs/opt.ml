@@ -17,7 +17,7 @@ let getopt av =
 			| (x, Optional) -> print_string ("[" ^ x ^ "]")
 			| (x, Mandatory) -> print_string x
 		end ; print_string " "
-		in Array.iter print_usage opts ; print_endline ""
+		in Array.iter print_usage opts ; print_endline "" ; exit 1
 	in
 	let rec _usage av i args =
 		if i < Array.length av then
