@@ -1,9 +1,11 @@
 open Utils
 let blank = '.'
 
+let equal s1 s2 = String.compare s1 s2 = 0
+
 let tape_test_sample () =
 	let tape = Tape.create "coucou" in
-	Unit.test (String.equal (Tape.to_string tape) "coucou")
+	Unit.test (equal (Tape.to_string tape) "coucou")
 	&& Unit.test (Tape.get tape = 'c')
 	&& begin 
 		Tape.right tape;
@@ -11,7 +13,7 @@ let tape_test_sample () =
 	end && begin
 		Tape.set tape 'e';
 		Unit.test (Tape.get tape = 'e') 
-	end && Unit.test (String.equal (Tape.to_string tape) "ceucou")
+	end && Unit.test (equal (Tape.to_string tape) "ceucou")
 
 let tape_test_extension () =
 	let tape = Tape.create "c" in
@@ -39,24 +41,24 @@ let tape_test_modulable_length () =
 	let tape = Tape.create "abc" in
 	begin 
 		Tape.left tape;
-		Unit.test (String.equal (Tape.to_string tape) ".abc")
+		Unit.test (equal (Tape.to_string tape) ".abc")
 	end && begin
 		loopf Tape.right tape 4;
-		Unit.test (String.equal (Tape.to_string tape) "abc.")
+		Unit.test (equal (Tape.to_string tape) "abc.")
 	end && begin
 		loopf Tape.right tape 3;
 		Tape.set tape 'd';
-		Unit.test (String.equal (Tape.to_string tape) "abc...d")
+		Unit.test (equal (Tape.to_string tape) "abc...d")
 	end && begin
 		loopf Tape.left tape 8;
 		Tape.set tape 'e';
-		Unit.test (String.equal (Tape.to_string tape) "e.abc...d")
+		Unit.test (equal (Tape.to_string tape) "e.abc...d")
 	end && begin
 		loopf Tape.left tape 2;
-		Unit.test (String.equal (Tape.to_string tape) "..e.abc...d")
+		Unit.test (equal (Tape.to_string tape) "..e.abc...d")
 	end && begin
 		loopf Tape.right tape 2;
-		Unit.test (String.equal (Tape.to_string tape) "e.abc...d")
+		Unit.test (equal (Tape.to_string tape) "e.abc...d")
 	end
 
 let main () = 

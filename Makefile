@@ -1,7 +1,14 @@
 NAME = ft_turing
 
-SRCSFILES = utils.ml tape.ml json.ml main.ml
-INTSFILES = tape.mli
+SRCSFILES = utils.ml tape.ml turing.ml 
+INTSFILES = tape.mli turing.mli
+
+SRCSFILES += json_utils.ml create_table.ml json.ml
+INTSFILES += json.mli
+
+SRCSFILES += main.ml
+
+
 
 SRCDIR = ./srcs
 

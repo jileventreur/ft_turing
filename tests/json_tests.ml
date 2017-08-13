@@ -1,7 +1,6 @@
 open Unix
 open Json
-
-let crash = success + 1
+open Utils
 
 let exit_test f expected_ret = 
 	if (fork () = 0) then begin
