@@ -1,6 +1,12 @@
+# @Author: Debray Arnaud <adebray>
+# @Date:   2017-08-13T16:18:52+02:00
+# @Email:  adebray@student.42.fr
+# @Last modified by:   adebray
+# @Last modified time: 2017-08-13T19:33:46+02:00
+
 NAME = ft_turing
 
-SRCSFILES = utils.ml tape.ml json.ml main.ml
+SRCSFILES = utils.ml tape.ml json.ml opt.ml main.ml
 INTSFILES = tape.mli
 
 SRCDIR = ./srcs
