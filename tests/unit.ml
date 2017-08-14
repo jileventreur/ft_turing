@@ -18,7 +18,7 @@ let unit_test flist =
 	let test_f (name, f) = 
 		Printf.printf "%s %*s: " name (!max_len - (String.length name)) "";
 		begin
-			let spaces_number () = 10 - !test_call in
+			let spaces_number () = 12 - !test_call in
 			try begin if (f ()) then
 				Printf.printf "%*s[\x1B[32mOK\x1B[0m]\n" (spaces_number ()) ""
 			else

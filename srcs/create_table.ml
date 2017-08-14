@@ -27,9 +27,9 @@ let get_action action = if equal action "LEFT" then Left else Right
 	- Les cles represente tous les etats excepte ceux finaux OK
 	- les elements de transitions correspondents a la struct TT
 	- write et read correspondent a des elements de l'alphabet TT
-	- to state pointe vers un etat 
+	- to state pointe vers un etat TT
 	- Action = LEFT || RIGHT TT
-	- Pas de doublon de read 
+	- Pas de doublon de read TT
  *)
 
 let get_index lst elem =

@@ -22,12 +22,42 @@ let exit_test f expected_ret =
 
 let json_test_open_file () =
 	Unit.test @@ exit_test (fun () -> ignore (Json.extract "nonexistent file")) fail &&
-	Unit.test @@ exit_test (fun () -> ignore (Json.extract "json/no_rights.json")) fail &&
 	Unit.test @@ exit_test (fun () -> ignore (Json.extract "json/bad_format.json")) fail &&
 	Unit.test @@ exit_test (fun () -> ignore (Json.extract "json/unary_sub.json")) success
+
+let json_test_members () =
+	Unit.test @@ exit_test (fun () -> ignore (Json.extract "bad_members.json")) fail &&
+	Unit.test @@ exit_test (fun () -> ignore (Json.extract "bad_members.json")) fail &&
+	Unit.test @@ exit_test (fun () -> ignore (Json.extract "bad_type1.json")) fail &&
+	Unit.test @@ exit_test (fun () -> ignore (Json.extract "bad_type2.json")) fail &&
+	Unit.test @@ exit_test (fun () -> ignore (Json.extract "bad_type3.json")) fail &&
+	Unit.test @@ exit_test (fun () -> ignore (Json.extract "bad_type4.json")) fail &&
+	Unit.test @@ exit_test (fun () -> ignore (Json.extract "blank_error.json")) fail &&
+	Unit.test @@ exit_test (fun () -> ignore (Json.extract "finals_error.json")) fail &&
+	Unit.test @@ exit_test (fun () -> ignore (Json.extract "initial_error.json")) fail &&
+	Unit.test @@ exit_test (fun () -> ignore (Json.extract "dup_members.json")) fail
+
+let json_test_bad_transition () =
+	Unit.test @@ exit_test (fun () -> ignore (Json.extract "transition_bad_action.json")) fail &&
+	Unit.test @@ exit_test (fun () -> ignore (Json.extract "transition_bad_read.json")) fail &&
+	Unit.test @@ exit_test (fun () -> ignore (Json.extract "transition_bad_to_state.json")) fail &&
+	Unit.test @@ exit_test (fun () -> ignore (Json.extract "transition_bad_type.json")) fail &&
+	Unit.test @@ exit_test (fun () -> ignore (Json.extract "transition_bad_write.json")) fail &&
+	Unit.test @@ exit_test (fun () -> ignore (Json.extract "transition_read_dup.json")) fail &&
+	Unit.test @@ exit_test (fun () -> ignore (Json.extract "transition_dup_state.json")) fail &&
+	Unit.test @@ exit_test (fun () -> ignore (Json.extract "transition_dup_member.json")) fail &&
+	Unit.test @@ exit_test (fun () -> ignore (Json.extract "transition_bad_member.json")) fail &&
+	Unit.test @@ exit_test (fun () -> ignore (Json.extract "transition_unkwow_state.json")) fail
 
 let main () = 
 	Printf.printf "---------- JSON ----------\n";
 	Unit.unit_test 
-		[("json_test_open_file", json_test_open_file)];
+		[("json_test_open_file", json_test_open_file);
+		("json_test_members", json_test_members);
+		("json_test_bad_transition", json_test_bad_transition)];
 	Printf.printf "--------------------------\n"
+(* 
+			[("tape_test_sample", tape_test_sample);
+		("tape_test_extension", tape_test_extension);
+		("tape_test_modulable_length", tape_test_modulable_length)];
+ *)

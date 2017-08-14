@@ -4,7 +4,7 @@
 	"blank" : ".",
 	"states" : [ "scanright", "eraseone", "subone", "skip", "HALT" ],
 	"initial" : "scanright",
-	"finals" : [ "HALT" ],
+	"finals" : [ "WOYO" ],
 
 	"transitions" : {
 		"scanright": [

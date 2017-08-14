@@ -3,7 +3,7 @@
 	"alphabet": [ "1", ".", "-", "=" ],
 	"blank" : ".",
 	"states" : [ "scanright", "eraseone", "subone", "skip", "HALT" ],
-	"initial" : "scanright",
+	"initial" : "bouya",
 	"finals" : [ "HALT" ],
 
 	"transitions" : {
