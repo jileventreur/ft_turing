@@ -1,3 +1,5 @@
+open Printf
+
 type t = {
 	mutable data : bytes;
 	mutable head : int;
@@ -33,7 +35,6 @@ let set tape c =
 		tape.rbound <- tape.head + 1
 
 let right tape =
-	(* print_endline "RIGHT"; *)
 	if (tape.head = tape.size - 1) then begin
 		tape.data <- Bytes.extend tape.data 0 extend_size;
 		Bytes.fill tape.data tape.size extend_size blank;
@@ -42,7 +43,6 @@ let right tape =
 	tape.head <- tape.head + 1
 
 let left tape =
-	(* print_endline "LEFT"; *)
 	if (tape.head = 0) then begin
 		tape.data <- Bytes.extend tape.data extend_size 0;
 		Bytes.fill tape.data 0 extend_size blank;
@@ -54,7 +54,7 @@ let left tape =
 	tape.head <- tape.head - 1
 
 let print tape = 
-	Printf.printf "Tape : %s\n" (Bytes.to_string tape.data)
+	printf "Tape : %s\n" (Bytes.to_string tape.data)
 
 let color_print tape =
 	let start = if (tape.head < tape.lbound) then tape.head else tape.lbound in
@@ -64,7 +64,7 @@ let color_print tape =
 			print_char '\n'
 		else begin 
 			begin if (i = tape.head) then
-				Printf.printf "\x1B[33m%c\x1B[0m" (Bytes.get tape.data i)
+				printf "\x1B[33m%c\x1B[0m" (Bytes.get tape.data i)
 			else
 				print_char (Bytes.get tape.data i)
 			end;
@@ -75,10 +75,10 @@ let color_print tape =
 	loop start
 
 let print_infos tape = 
-	Printf.printf "----- TAPE -----\n";
-	Printf.printf "data : %s\n" (to_string tape);
-	Printf.printf "head : %d\n" tape.head;
-	Printf.printf "size : %d\n" tape.size;
-	Printf.printf "lbound : %d\n" tape.lbound;
-	Printf.printf "rbound : %d\n" tape.rbound;
-	Printf.printf "----------------\n";
+	printf "----- TAPE -----\n";
+	printf "data : %s\n" (to_string tape);
+	printf "head : %d\n" tape.head;
+	printf "size : %d\n" tape.size;
+	printf "lbound : %d\n" tape.lbound;
+	printf "rbound : %d\n" tape.rbound;
+	printf "----------------\n";

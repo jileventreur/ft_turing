@@ -27,13 +27,6 @@ type parsing = {
 	transitions : (string * Yojson.Basic.json) list;
 }
 
-(* module TransitionsMap = Map.Make(
-struct
-	type t = string
-	let compare = Pervasives.compare
-end)
- *)
-
 let obj_to_assoc ?(name = "member") jobj = 
 	try to_assoc jobj with
 	| _ -> printf "ft_turing : %s must be a list\n" name ; exit fail

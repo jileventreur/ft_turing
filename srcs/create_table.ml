@@ -21,25 +21,16 @@ type data = {
 let char_range = 256
 let transition_members = ["read"; "to_state"; "write"; "action"]
 
-let get_action action = if equal action "LEFT" then Left else Right
+let _get_action action = if equal action "LEFT" then Left else Right
 
-(* Transitions :
-	- Les cles represente tous les etats excepte ceux finaux OK
-	- les elements de transitions correspondents a la struct TT
-	- write et read correspondent a des elements de l'alphabet TT
-	- to state pointe vers un etat TT
-	- Action = LEFT || RIGHT TT
-	- Pas de doublon de read TT
- *)
-
-let get_index lst elem =
+let _get_index lst elem =
 	let rec loop lst i = match lst with
 	| head::tail when equal head elem -> i
 	| head::tail -> loop tail (i + 1)
 	| [] -> raise Not_found
 	in loop lst 0
 
-let create_transition tab (parsing : parsing) json =
+let _create_transition tab (parsing : parsing) json =
 	let assoc = obj_to_assoc json in 
 	let read = obj_to_string @@ member "read" json in
 	let to_state = obj_to_string @@ member "to_state" json in
@@ -63,12 +54,12 @@ let create_transition tab (parsing : parsing) json =
 	in
 	verif_member assoc transition_members;
 	verif_transition_members;
-	Array.set tab index (Defined (String.get write 0, get_action action, get_index parsing.stateslst to_state))
+	Array.set tab index (Defined (String.get write 0, _get_action action, _get_index parsing.stateslst to_state))
 
-let create_normal_state (name, json) parsing =
+let _create_normal_state (name, json) parsing =
 	let transitiontab = Array.make char_range Undefined in
 	let jlst = obj_to_lst ~name:name json in
-	List.iter (create_transition transitiontab parsing) jlst;
+	List.iter (_create_transition transitiontab parsing) jlst;
 	Normal (name, transitiontab)
 
 let create_table (parsing : parsing) =
@@ -77,7 +68,7 @@ let create_table (parsing : parsing) =
 		if StringSet.mem name parsing.finals then
 			Array.set statetab index (Final(name))
 		else
-			Array.set statetab index (create_normal_state (List.find (fun (str, _ ) -> equal name str) parsing.transitions) parsing)
+			Array.set statetab index (_create_normal_state (List.find (fun (str, _ ) -> equal name str) parsing.transitions) parsing)
 	in
 	List.iteri create_state parsing.stateslst;
 	{
@@ -85,5 +76,5 @@ let create_table (parsing : parsing) =
 		alphabet = parsing.alphabet; 
 		blank = parsing.blank; 
 		table = statetab; 
-		state_register = get_index parsing.stateslst parsing.initial
-	}
+		state_register = _get_index parsing.stateslst parsing.initial
+	}	
