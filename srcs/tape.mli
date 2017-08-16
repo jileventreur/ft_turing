@@ -4,6 +4,7 @@ type t
 val create : string -> t
 
 val to_string : t -> string
+val _to_string : ?color:bool -> t -> string
 val get : t -> char
 val set : t -> char -> unit
 val left : t -> unit

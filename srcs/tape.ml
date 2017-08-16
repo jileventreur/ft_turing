@@ -12,22 +12,22 @@ let extend_size = 256
 let blank = '.'
 
 let create str = {
-	data = Bytes.of_string str; 
+	data = Bytes.of_string str;
 	head = 0;
 	size = String.length str;
 	lbound = 0;
 	rbound = String.length str;
 }
 
-let to_string tape = 
+let to_string tape =
 	let start = if (tape.head < tape.lbound) then tape.head else tape.lbound in
 	let stop = if (tape.head >= tape.rbound) then tape.head + 1 else tape.rbound in
 	Bytes.sub_string tape.data start (stop - start)
 
-let get tape = 
+let get tape =
 	Bytes.get tape.data tape.head
 
-let set tape c = 
+let set tape c =
 	Bytes.set tape.data tape.head c;
 	if (tape.head < tape.lbound) then
 		tape.lbound <- tape.head
@@ -59,10 +59,10 @@ let print tape =
 let color_print tape =
 	let start = if (tape.head < tape.lbound) then tape.head else tape.lbound in
 	let stop = if (tape.head >= tape.rbound) then tape.head + 1 else tape.rbound in
-	let rec loop i = 
+	let rec loop i =
 		if (i >= stop) then
 			print_char '\n'
-		else begin 
+		else begin
 			begin if (i = tape.head) then
 				printf "\x1B[33m%c\x1B[0m" (Bytes.get tape.data i)
 			else
@@ -74,11 +74,29 @@ let color_print tape =
 	print_string "Tape : ";
 	loop start
 
-let print_infos tape = 
-	printf "----- TAPE -----\n";
-	printf "data : %s\n" (to_string tape);
-	printf "head : %d\n" tape.head;
-	printf "size : %d\n" tape.size;
-	printf "lbound : %d\n" tape.lbound;
-	printf "rbound : %d\n" tape.rbound;
-	printf "----------------\n";
+let _to_string ?(color = false) tape =
+	let start = if (tape.head < tape.lbound) then tape.head else tape.lbound in
+	let stop = if (tape.head >= tape.rbound) then tape.head + 1 else tape.rbound in
+	let rec loop i acc =
+		if (i >= stop) then
+			acc
+		else begin
+			if (i = tape.head) then
+				if color then
+					loop (i + 1) (acc ^ "\x1B[33m" ^ (String.make 1 (Bytes.get tape.data i)) ^ "\x1B[0m")
+				else
+					loop (i + 1) (acc ^ "<" ^ (String.make 1 (Bytes.get tape.data i)) ^ ">")
+			else
+				loop (i + 1) (acc ^ (String.make 1 (Bytes.get tape.data i)))
+		end
+	in
+	loop start ""
+
+let print_infos tape =
+	Printf.printf "----- TAPE -----\n";
+	Printf.printf "data : %s\n" (to_string tape);
+	Printf.printf "head : %d\n" tape.head;
+	Printf.printf "size : %d\n" tape.size;
+	Printf.printf "lbound : %d\n" tape.lbound;
+	Printf.printf "rbound : %d\n" tape.rbound;
+	Printf.printf "----------------\n";
