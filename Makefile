@@ -2,15 +2,15 @@
 # @Date:   2017-08-13T16:18:52+02:00
 # @Email:  adebray@student.42.fr
 # @Last modified by:   adebray
-# @Last modified time: 2017-08-13T21:42:05+02:00
+# @Last modified time: 2017-08-16T23:00:21+02:00
 
 NAME = ft_turing
 
-SRCSFILES = utils.ml tape.ml opt.ml turing.ml
-INTSFILES = tape.mli turing.mli
+SRCSFILES = utils.ml tape.ml json_utils.ml  table.ml json.ml  turing.ml 
+INTSFILES = tape.mli
 
-SRCSFILES += json_utils.ml create_table.ml json.ml
-INTSFILES += json.mli
+# SRCSFILES += json_utils.ml table.ml json.ml
+# INTSFILES += json.mli table.mli
 
 SRCSFILES += main.ml
 

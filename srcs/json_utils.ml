@@ -34,7 +34,7 @@ struct
 end)
  *)
 
-let obj_to_assoc ?(name = "member") jobj = 
+let obj_to_assoc ?(name = "member") jobj =
 	try to_assoc jobj with
 	| _ -> printf "ft_turing : %s must be a list\n" name ; exit fail
 
@@ -46,22 +46,22 @@ let obj_to_string ?(name = "member") jobj =
 	try to_string jobj with
 	| _ -> printf "ft_turing : %s must be a string\n" name ; exit fail
 
-let get_json filename = 
+let get_json filename =
 	try Yojson.Basic.from_file filename with
 	| Yojson.Json_error str -> printf "ft_turing : %s : %s\n" filename str ; exit fail
 	| Sys_error str -> printf "ft_turing : %s\n" str ; exit fail
 	| _ -> printf "ft_turing : %s : Error opening json file\n" filename ; exit fail
 
-let get_member json name = 
+let get_member json name =
 	let jobj = member name json in
 	match jobj with
 	| `Null -> printf "ft_turing : Error missing member %s\n" name ; exit fail
 	| _ -> jobj
 
 let verif_member ?(name = "json") assoc reflst =
-	let name_lst = lstfst assoc in 
+	let name_lst = lstfst assoc in
 	let rec members_are_contain reflst = match reflst with
-	| head::tail when List.exists (fun str -> String.compare head str = 0) name_lst -> members_are_contain tail 
+	| head::tail when List.exists (fun str -> String.compare head str = 0) name_lst -> members_are_contain tail
 	| head::tail -> printf "ft_turing : Error %s member is missing from %s\n" head name; exit fail
 	| [] -> ()
 	in

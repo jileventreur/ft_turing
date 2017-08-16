@@ -1,4 +1,4 @@
-include Create_table
+include Table
 
 open Json_utils
 open Yojson.Basic.Util
@@ -8,6 +8,19 @@ open Utils
 (* Temporary parsing structure *)
 
 module CharSet = Json_utils.CharSet
+
+(* type action = Left | Right
+type state_index = int
+type transition = Defined of char * action * state_index | Undefined
+type state = Normal of (string * transition array) | Final of string
+
+type data = {
+	name : string;
+	alphabet : CharSet.t;
+	blank : char;
+	table : state array;
+	state_register : state_index;
+} *)
 
 let turing_members = ["name"; "alphabet"; "blank"; "states"; "initial"; "finals"; "transitions"]
 
@@ -23,7 +36,7 @@ let create_alphabet json =
 	end else if CL.contains_dup slst then begin
 		printf "ft_turing : Error alphabet can't have duplicates members\n"; exit fail;
 	end;
-	let char_lst = List.map (fun str -> String.get str 0) slst in 
+	let char_lst = List.map (fun str -> String.get str 0) slst in
 	CharSet.of_list char_lst
 
 let create_blank json alphabet =
@@ -38,7 +51,7 @@ let create_blank json alphabet =
 
 let create_states json =
 	let lst = obj_to_lst ~name:"states" (get_member json "states") in
-	let slst = filter_string lst in 
+	let slst = filter_string lst in
 	if (List.length lst = 0) then begin
 		printf "ft_turing : Error states can't be empty\n"; exit fail
 	end else if List.length lst <> List.length slst then begin
@@ -47,17 +60,17 @@ let create_states json =
 		printf "ft_turing : Error states can't have duplicates members\n"; exit fail;
 	end;
 	slst
-let create_initial json states = 
+let create_initial json states =
 	let initial = obj_to_string ~name:"initial" (get_member json "initial") in
 	if not (StringSet.mem initial states) then begin
 		printf "ft_turing : Error initial must be part of states\n"; exit fail
 	end;
 	initial
 
-let create_finals json states = 
+let create_finals json states =
 	let lst = obj_to_lst ~name:"finals" (get_member json "finals") in
 	let slst = filter_string lst in
-	let finals = StringSet.of_list slst in 
+	let finals = StringSet.of_list slst in
 	if List.length lst = 0 then begin
 		printf "ft_turing : Error finals can't be empty\n"; exit fail
 	end else if List.length lst <> List.length slst then begin
@@ -69,7 +82,7 @@ let create_finals json states =
 	end;
 	finals
 
-let verif_transition assoc states finals = 
+let verif_transition assoc states finals =
 	let slst = lstfst assoc in
 	let transitions_set = StringSet.of_list slst in
 	let compared_set = StringSet.diff states finals in
@@ -85,14 +98,14 @@ let create_transitions json states finals =
 	verif_transition transitions_assoc states finals;
 	transitions_assoc
 
-let extract filename = 
+let extract filename =
 	let json = get_json filename in
 	let assoc = obj_to_assoc json in
 	verif_member assoc turing_members;
 	let name = obj_to_string ~name:"name" (get_member json "name") in
 	let alphabet = create_alphabet json in
 	let stateslst = create_states json in
-	let states = StringSet.of_list stateslst in	
+	let states = StringSet.of_list stateslst in
 	let finals = create_finals json states in
 	let data = {
 		name = name;
@@ -104,25 +117,25 @@ let extract filename =
 		finals = finals;
 		transitions = create_transitions json states finals;
 	} in
-	Create_table.create_table data
+	Table.create_table data
 
-(* 
+(*
 condition de parsing :
 	- Fichier existant et bien formate (pas d'exception a l'ouverture) OK
 	- Toutes les keys attendue sont presentes sont uniques et sont du type attendu OK
  	- chaque etats de states correspond a une transitions sauf les transitions finales OK
  	- blank appartient a alphabet OK
- 	- initial et finals appartiennent a states OK 
- 	- transitionss :	- map 
- 						- into array 
+ 	- initial et finals appartiennent a states OK
+ 	- transitionss :	- map
+ 						- into array
 	- Pas de membre supplementaire OK
 	- pas de doublons dans les lists OK
- 
 
- preparer la structure de stocakge des donnes parsees : 
+
+ preparer la structure de stocakge des donnes parsees :
  	- name : string
  	- alphabet : set ?
  	- blank : char
- 	- states : map key string ; val transitions 
+ 	- states : map key string ; val transitions
  	- transitions : : map key : char ; val (string, char, tape -> unit)
  *)
