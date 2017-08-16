@@ -1,0 +1,13 @@
+./srcs/tape.cmi :
+./srcs/utils.cmo :
+./srcs/utils.cmx :
+./srcs/tape.cmo : ./srcs/tape.cmi
+./srcs/tape.cmx : ./srcs/tape.cmi
+./srcs/json_utils.cmo :
+./srcs/json_utils.cmx :
+./srcs/table.cmo :
+./srcs/table.cmx :
+./srcs/json.cmo :
+./srcs/json.cmx :
+./srcs/turing.cmo :
+./srcs/turing.cmx :

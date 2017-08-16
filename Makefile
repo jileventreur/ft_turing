@@ -1,31 +1,34 @@
 # @Author: Debray Arnaud <adebray>
-# @Date:   2017-08-13T16:18:52+02:00
+# @Date:   2017-08-17T00:51:46+02:00
 # @Email:  adebray@student.42.fr
 # @Last modified by:   adebray
-# @Last modified time: 2017-08-16T23:00:21+02:00
+# @Last modified time: 2017-08-17T01:04:06+02:00
 
 NAME = ft_turing
 
-SRCSFILES = utils.ml tape.ml json_utils.ml  table.ml json.ml  turing.ml 
-INTSFILES = tape.mli
-
-# SRCSFILES += json_utils.ml table.ml json.ml
-# INTSFILES += json.mli table.mli
-
-SRCSFILES += main.ml
+MLI = tape.mli
+ML = utils.ml \
+	tape.ml \
+ 	json_utils.ml \
+	table.ml \
+	json.ml \
+ 	turing.ml
 
 SRCDIR = ./srcs
 
-CAMLC = ocamlc
-CAMLOPT = ocamlopt
+SRCS = $(addprefix $(SRCDIR)/,$(ML))
+INTS = $(addprefix $(SRCDIR)/,$(MLI))
+
+OBJS = $(SRCS:.ml=.cmo)
+OPTOBJS = $(SRCS:.ml=.cmx)
+CMI = $(INTS:.mli=.cmi)
 
 FLAGS = -thread -package core,yojson
-
 LD_FLAGS = -linkpkg
 LD_FLAGS_BYT = $(LD_FLAGS:.cmxa=.cma)
 LD_FLAGS_OPT = $(LD_FLAGS)
 
-all: $(NAME)
+all: depend $(NAME)
 
 $(NAME): opt byt
 	@ln -sf $(NAME).opt $(NAME)
@@ -33,20 +36,13 @@ $(NAME): opt byt
 opt: $(NAME).opt
 byt: $(NAME).byt
 
-SRCS = $(addprefix $(SRCDIR)/,$(SRCSFILES))
-INTS = $(addprefix $(SRCDIR)/,$(INTSFILES))
-
-OBJS = $(SRCS:.ml=.cmo)
-OPTOBJS = $(SRCS:.ml=.cmx)
-CMI = $(INTS:.mli=.cmi)
-
 $(NAME).byt: $(CMI) $(OBJS)
 	ocamlfind ocamlc $(LD_FLAGS_BYT) $(FLAGS) -o $(NAME).byt $(OBJS)
 
 $(NAME).opt: $(CMI) $(OPTOBJS)
 	ocamlfind ocamlopt $(LD_FLAGS_OPT) $(FLAGS) -o $(NAME).opt $(OPTOBJS)
 
-.SUFFIXES:
+
 .SUFFIXES: .ml .mli .cmo .cmi .cmx
 
 .ml.cmo:
@@ -69,8 +65,10 @@ fclean: clean
 	rm -f $(NAME).byt
 	make -f Maketest fclean
 
-unit : tests/*
-	make -f Maketest
+depend:
+	ocamldep $(SRCDIR) $(INTS) $(SRCS) > .depend
+
+include .depend
 
 install_libs: #with a working brew on macos
 	hash -r
@@ -86,7 +84,6 @@ install_libs: #with a working brew on macos
 		eval `opam config env`\
 		)
 	opam install -y core.113.00.00
-# ls -d  ~/.opam/4.02.3/lib/core || opam install -y core
 	ls -d ~/.opam/4.02.3/lib/yojson || opam install -y yojson
 	hash -r
 	type ocamlfind || opam install -y ocamlfind
