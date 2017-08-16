@@ -1,5 +1,5 @@
-open Core.Std
-open Printf
+open Turing
+open Json
 
 let () =
 	let count = ref 0 in

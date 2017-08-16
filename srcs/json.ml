@@ -5,8 +5,6 @@ open Yojson.Basic.Util
 open Printf
 open Utils
 
-(* Temporary parsing structure *)
-
 module CharSet = Json_utils.CharSet
 
 (* type action = Left | Right
@@ -24,7 +22,7 @@ type data = {
 
 let turing_members = ["name"; "alphabet"; "blank"; "states"; "initial"; "finals"; "transitions"]
 
-let create_alphabet json =
+let _create_alphabet json =
 	let lst = obj_to_lst ~name:"alphabet" (get_member json "alphabet") in
 	let slst = filter_string lst in
 	if (List.length lst = 0) then begin
@@ -39,7 +37,7 @@ let create_alphabet json =
 	let char_lst = List.map (fun str -> String.get str 0) slst in
 	CharSet.of_list char_lst
 
-let create_blank json alphabet =
+let _create_blank json alphabet =
 	let blank_str = obj_to_string ~name:"blank" (get_member json "blank") in
 	let blank = String.get blank_str 0 in
 	if not (is_char blank_str) then begin
@@ -49,7 +47,7 @@ let create_blank json alphabet =
 	end;
 	blank
 
-let create_states json =
+let _create_states json =
 	let lst = obj_to_lst ~name:"states" (get_member json "states") in
 	let slst = filter_string lst in
 	if (List.length lst = 0) then begin
@@ -60,14 +58,15 @@ let create_states json =
 		printf "ft_turing : Error states can't have duplicates members\n"; exit fail;
 	end;
 	slst
-let create_initial json states =
+
+let _create_initial json states =
 	let initial = obj_to_string ~name:"initial" (get_member json "initial") in
 	if not (StringSet.mem initial states) then begin
 		printf "ft_turing : Error initial must be part of states\n"; exit fail
 	end;
 	initial
 
-let create_finals json states =
+let _create_finals json states =
 	let lst = obj_to_lst ~name:"finals" (get_member json "finals") in
 	let slst = filter_string lst in
 	let finals = StringSet.of_list slst in
@@ -82,7 +81,7 @@ let create_finals json states =
 	end;
 	finals
 
-let verif_transition assoc states finals =
+let _verif_transition assoc states finals =
 	let slst = lstfst assoc in
 	let transitions_set = StringSet.of_list slst in
 	let compared_set = StringSet.diff states finals in
@@ -92,10 +91,10 @@ let verif_transition assoc states finals =
 		printf "ft_turing : Error transitions can't have duplicates members\n"; exit fail;
 	end
 
-let create_transitions json states finals =
+let _create_transitions json states finals =
 	let jobj = get_member json "transitions" in
 	let transitions_assoc = obj_to_assoc ~name:"transitions" jobj in
-	verif_transition transitions_assoc states finals;
+	_verif_transition transitions_assoc states finals;
 	transitions_assoc
 
 let extract filename =
@@ -103,19 +102,19 @@ let extract filename =
 	let assoc = obj_to_assoc json in
 	verif_member assoc turing_members;
 	let name = obj_to_string ~name:"name" (get_member json "name") in
-	let alphabet = create_alphabet json in
-	let stateslst = create_states json in
+	let alphabet = _create_alphabet json in
+	let stateslst = _create_states json in
 	let states = StringSet.of_list stateslst in
-	let finals = create_finals json states in
+	let finals = _create_finals json states in
 	let data = {
 		name = name;
 		alphabet = alphabet;
-		blank = create_blank json alphabet;
+		blank = _create_blank json alphabet;
 		stateslst = stateslst;
 		states = states;
-		initial = create_initial json states;
+		initial = _create_initial json states;
 		finals = finals;
-		transitions = create_transitions json states finals;
+		transitions = _create_transitions json states finals;
 	} in
 	Table.create_table data
 

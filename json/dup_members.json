@@ -5,6 +5,7 @@
 	"states" : [ "scanright", "eraseone", "subone", "skip", "HALT" ],
 	"initial" : "scanright",
 	"finals" : [ "HALT" ],
+	"finals" : [ "HALT" ],
 
 	"transitions" : {
 		"scanright": [

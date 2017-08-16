@@ -4,12 +4,12 @@
 	"blank" : ".",
 	"states" : [ "scanright", "eraseone", "subone", "skip", "HALT" ],
 	"initial" : "scanright",
-	"finals" : [ "HALT" ],
+	"pouet" : [ "HALT" ],
 
 	"transitions" : {
 		"scanright": [
 			{ "read" : ".", "to_state": "scanright", "write": ".", "action": "RIGHT"},
-			{ "read" : "1", "to_state": "scanright", "write": "1", "action": "RIGHT"},
+			{ "read" : "1", "to_riste": "scanright", "write": "1", "action": "RIGHT"},
 			{ "read" : "-", "to_state": "scanright", "write": "-", "action": "RIGHT"},
 			{ "read" : "=", "to_state": "eraseone" , "write": ".", "action": "LEFT" }
 			],

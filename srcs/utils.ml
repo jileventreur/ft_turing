@@ -13,7 +13,7 @@ let equal s1 s2 = String.compare s1 s2 = 0
 let lstfst lst = let (fst, _) = List.split lst in fst 
 let lstsnd lst = let (_, snd) = List.split lst in snd 
 
-
+(* expect string list *)
 let print_list lst = 
 	Printf.printf "---------- LIST ----------\n";
 	List.iter (fun s -> Printf.printf "%s\n" s) lst;
