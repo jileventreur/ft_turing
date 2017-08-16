@@ -1,102 +1,53 @@
-type t = {
-	mutable data : bytes;
-	mutable head : int;
-	mutable size : int;
-	mutable lbound : int;
-	mutable rbound : int;
+type tape = {
+	data: string;
+	head: int;
+	size: int;
 }
 
-let extend_size = 256
-let blank = '.'
+type exn = Ok of tape | Error of string
 
 let create str = {
-	data = Bytes.of_string str;
+	data = str;
 	head = 0;
 	size = String.length str;
-	lbound = 0;
-	rbound = String.length str;
 }
 
-let to_string tape =
-	let start = if (tape.head < tape.lbound) then tape.head else tape.lbound in
-	let stop = if (tape.head >= tape.rbound) then tape.head + 1 else tape.rbound in
-	Bytes.sub_string tape.data start (stop - start)
-
-let get tape =
-	Bytes.get tape.data tape.head
-
-let set tape c =
-	Bytes.set tape.data tape.head c;
-	if (tape.head < tape.lbound) then
-		tape.lbound <- tape.head
-	else if (tape.head >= tape.rbound) then
-		tape.rbound <- tape.head + 1
+let get tape = String.get tape.data tape.head
+let geti tape i = String.get tape.data i
+let set tape _char =
+	let rec _loop ?(i = 0) ?(acc = "") () =
+		if i < tape.size then
+			if i = tape.head then
+				_loop ~i:(i + 1) ~acc:(acc ^ (Core.Std.Char.to_string _char)) ()
+			else
+				_loop ~i:(i + 1) ~acc:(acc ^ (Core.Std.Char.to_string (geti tape i))) ()
+		else { tape with data = acc }
+	in _loop ()
 
 let right tape =
-	(* print_endline "RIGHT"; *)
-	if (tape.head = tape.size - 1) then begin
-		tape.data <- Bytes.extend tape.data 0 extend_size;
-		Bytes.fill tape.data tape.size extend_size blank;
-		tape.size <- tape.size + extend_size
-	end;
-	tape.head <- tape.head + 1
+	if tape.head + 1 < tape.size then Ok { tape with head = tape.head + 1 }
+	else Error "Out of bound"
 
 let left tape =
-	(* print_endline "LEFT"; *)
-	if (tape.head = 0) then begin
-		tape.data <- Bytes.extend tape.data extend_size 0;
-		Bytes.fill tape.data 0 extend_size blank;
-		tape.size <- tape.size + extend_size;
-		tape.head <- tape.head + extend_size;
-		tape.lbound <- tape.lbound + extend_size;
-		tape.rbound <- tape.rbound + extend_size
-	end;
-	tape.head <- tape.head - 1
+	if tape.head - 1 >= 0 then Ok { tape with head = tape.head - 1 }
+	else Error "Out of bound"
 
-let print tape =
-	Printf.printf "Tape : %s\n" (Bytes.to_string tape.data)
-
-let color_print tape =
-	let start = if (tape.head < tape.lbound) then tape.head else tape.lbound in
-	let stop = if (tape.head >= tape.rbound) then tape.head + 1 else tape.rbound in
-	let rec loop i =
-		if (i >= stop) then
-			print_char '\n'
-		else begin
-			begin if (i = tape.head) then
-				Printf.printf "\x1B[33m%c\x1B[0m" (Bytes.get tape.data i)
-			else
-				print_char (Bytes.get tape.data i)
-			end;
-			loop (i + 1)
-		end
-	in
-	print_string "Tape : ";
-	loop start
-
-let _to_string ?(color = false) tape =
-	let start = if (tape.head < tape.lbound) then tape.head else tape.lbound in
-	let stop = if (tape.head >= tape.rbound) then tape.head + 1 else tape.rbound in
-	let rec loop i acc =
-		if (i >= stop) then
-			acc
-		else begin
-			if (i = tape.head) then
+let to_string ?(color = false) tape =
+	let rec _loop ?(i = 0) ?(acc = "") () =
+		let _partial_loop = _loop ~i:(i + 1) in
+		if i < tape.size then
+			if i = tape.head then
 				if color then
-					loop (i + 1) (acc ^ "\x1B[33m" ^ (String.make 1 (Bytes.get tape.data i)) ^ "\x1B[0m")
+					_partial_loop ~acc:(acc ^ "\x1B[33m" ^ (Core.Std.Char.to_string (geti tape i)) ^ "\x1B[0m") ()
 				else
-					loop (i + 1) (acc ^ "<" ^ (String.make 1 (Bytes.get tape.data i)) ^ ">")
+					_partial_loop ~acc:(acc ^ "<" ^ (Core.Std.Char.to_string (geti tape i)) ^ ">") ()
 			else
-				loop (i + 1) (acc ^ (String.make 1 (Bytes.get tape.data i)))
-		end
-	in
-	loop start ""
+				_partial_loop ~acc:(acc ^ (Core.Std.Char.to_string (geti tape i))) ()
+		else
+			acc
+	in _loop ()
 
-let print_infos tape =
-	Printf.printf "----- TAPE -----\n";
-	Printf.printf "data : %s\n" (to_string tape);
-	Printf.printf "head : %d\n" tape.head;
-	Printf.printf "size : %d\n" tape.size;
-	Printf.printf "lbound : %d\n" tape.lbound;
-	Printf.printf "rbound : %d\n" tape.rbound;
-	Printf.printf "----------------\n";
+(* let () =
+	let t = create "111+11=" in
+	print_endline (to_string t);
+	print_char (get t) *)
