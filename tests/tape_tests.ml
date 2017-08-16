@@ -1,8 +1,4 @@
 
-
-
-
-
 open Utils
 let blank = '.'
 

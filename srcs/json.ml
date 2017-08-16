@@ -5,8 +5,6 @@ open Yojson.Basic.Util
 open Printf
 open Utils
 
-(* Temporary parsing structure *)
-
 module CharSet = Json_utils.CharSet
 
 let turing_members = ["name"; "alphabet"; "blank"; "states"; "initial"; "finals"; "transitions"]

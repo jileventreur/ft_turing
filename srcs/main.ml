@@ -55,6 +55,13 @@ let debug data =
 	print_endline "" ;
 	Array.iter data.table _print_table
 
+let _get_name state = match state with
+	| Normal (name, _) -> name
+	| Final (name) -> name  
+
+let _print_transition_switch data i read =
+	printf "(%s, %c) -> %s\n" (_get_name @@ Array.get data.table data.state_register) read (_get_name @@ Array.get data.table i)
+
 let rec exec tape data =
 	let s = (Tape._to_string ~color:false tape) in
 	print_string ( "[ " ^ s ) ;
@@ -67,7 +74,8 @@ let rec exec tape data =
 	let state = data.table.(data.state_register) in
 	match state with
 	| Normal (s, t) -> begin
-		let transition = t.(Char.to_int (Tape.get tape)) in
+		let read = Tape.get tape in
+		let transition = t.(Char.to_int read) in
 		(* Missing functional update for the tape *)
 		match transition with
 		| Defined (c,a,i) -> begin
@@ -76,13 +84,10 @@ let rec exec tape data =
 			| Turing.Right -> Tape.right tape
 			| Turing.Left -> Tape.left tape
 			end ;
-			print_int data.state_register ;
-			print_string " -> " ;
-			print_int i ;
-			print_endline "" ;
+			_print_transition_switch data i read ;
 			exec tape {data with state_register = i}
 		end
-		| Undefined -> "Undefined state"
+		| Undefined -> "Undefined state\n"
 	end
 	| Final s -> s ^ "\n"
 
@@ -90,5 +95,5 @@ let () =
 	let argv = getopt Sys.argv in
 	print_endline argv.jsonfile ;
 	let data = extract argv.jsonfile in
-	debug data ;
+	(* debug data ; *)
 	print_string (exec (Tape.create argv.input) data)

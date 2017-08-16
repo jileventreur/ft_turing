@@ -42,6 +42,8 @@ let _create_transition tab (parsing : parsing) json =
 			printf "ft_turing : Error read value must be a char\n" ; exit fail
 		end else if not (CharSet.mem (String.get read 0) parsing.alphabet) then begin
 			printf "ft_turing : Error read must be part of alphabet\n"; exit fail
+		end else if (Array.get tab index <> Undefined) then begin
+			printf "ft_turing : Error one char readed must be associate with only one transition\n"; exit fail
 		end else if not (is_char write) then begin 
 			printf "ft_turing : Error write value must be a char\n" ; exit fail
 		end else if not (CharSet.mem (String.get write 0) parsing.alphabet) then begin
