@@ -6,8 +6,7 @@ let () =
 	let opts = [| "jsonfile" ; "input" |] in
 	let getopt opts s =
 		opts.(!count) <- s;
-		incr count;
-		print_endline s
+		incr count
 	in
 	Arg.parse [] (getopt opts) "Usage: ft_turing [-h] jsonfile input";
 	match !count with
