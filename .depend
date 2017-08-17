@@ -11,3 +11,5 @@
 ./srcs/json.cmx :
 ./srcs/turing.cmo :
 ./srcs/turing.cmx :
+./srcs/main.cmo :
+./srcs/main.cmx :

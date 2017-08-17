@@ -2,7 +2,7 @@
 # @Date:   2017-08-17T00:51:46+02:00
 # @Email:  adebray@student.42.fr
 # @Last modified by:   adebray
-# @Last modified time: 2017-08-17T01:04:06+02:00
+# @Last modified time: 2017-08-17T01:10:37+02:00
 
 NAME = ft_turing
 
@@ -12,7 +12,8 @@ ML = utils.ml \
  	json_utils.ml \
 	table.ml \
 	json.ml \
- 	turing.ml
+ 	turing.ml \
+	main.ml
 
 SRCDIR = ./srcs
 
