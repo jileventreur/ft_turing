@@ -4,8 +4,6 @@ type tape = {
 	size: int;
 }
 
-type exn = Ok of tape | Error of string
-
 let create str = {
 	data = str;
 	head = 0;
@@ -25,12 +23,12 @@ let set tape _char =
 	in _loop ()
 
 let right tape =
-	if tape.head + 1 < tape.size then Ok { tape with head = tape.head + 1 }
-	else Error "Out of bound"
+	if tape.head + 1 < tape.size then { tape with head = tape.head + 1 }
+	else  { tape with head = tape.size ; data = (tape.data ^ "." ) }
 
 let left tape =
-	if tape.head - 1 >= 0 then Ok { tape with head = tape.head - 1 }
-	else Error "Out of bound"
+	if tape.head - 1 >= 0 then { tape with head = tape.head - 1 }
+	else { tape with head = 0 ; data = ("." ^ tape.data) }
 
 let to_string ?(color = false) tape =
 	let rec _loop ?(i = 0) ?(acc = "") () =

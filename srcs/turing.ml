@@ -1,4 +1,5 @@
 open Json
+open Printf
 
 let _print_transition _i _t = match _t with
 | Defined (c, a, i) -> begin
@@ -26,6 +27,13 @@ let debug data =
 	print_endline "" ;
 	Core.Std.Array.iter data.table _print_table
 
+let _get_name state = match state with
+	| Normal (name, _) -> name
+	| Final (name) -> name
+
+let _print_transition_switch data i read =
+	printf "(%s, %c) -> %s\n" (_get_name @@ Array.get data.table data.state_register) read (_get_name @@ Array.get data.table i)
+
 let rec exec tape data =
 	let s = (Tape.to_string ~color:false tape) in
 	print_string ( "[ " ^ s ) ;
@@ -38,22 +46,18 @@ let rec exec tape data =
 	let state = data.table.(data.state_register) in
 	match state with
 	| Normal (s, t) -> begin
-		let transition = t.(Core.Std.Char.to_int (Tape.get tape)) in
+		let read = Tape.get tape in
+		let transition = t.(Core.Std.Char.to_int read) in
 		match transition with
 		| Defined (c,a,i) -> begin
 			let tape = Tape.set tape c in
-			print_int data.state_register ;
-			print_string " -> " ;
-			print_int i ;
-			print_endline "" ;
-			let raise_tape t = match t with
-				| Tape.Ok t -> exec t {data with state_register = i}
-				| Tape.Error s -> s
+			let next f =
+				_print_transition_switch data i read ;
+				exec (f tape) {data with state_register = i}
 			in match a with
-			| Right -> raise_tape (Tape.right tape)
-			| Left -> raise_tape (Tape.left tape)
-
+			| Right -> next Tape.right
+			| Left -> next Tape.left
 		end
-		| Undefined -> "Undefined state"
+		| Undefined -> "Undefined state\n"
 	end
 	| Final s -> s ^ "\n"
