@@ -1,22 +1,8 @@
 open Json
 open Printf
 
-let _print_transition _i _t = match _t with
-| Defined (c, a, i) -> begin
-	let s = "<" ^ (Core.Std.Char.to_string (Core.Std.Char.of_int_exn (_i))) ^ ">\t'" ^ (Core.Std.Char.to_string c) in
-	match a with
-	| Right -> print_endline (s ^ "' : Right | " ^ (string_of_int i))
-	| Left -> print_endline (s ^ "' : Left | " ^ (string_of_int i))
-	end
-| Undefined -> () (* print_endline "\tUndefined" *)
-
-let _print_table t = match t with
-| Normal (s, _t) ->
-	print_endline ("Normal: " ^ s) ;
-	Core.Std.Array.iteri _print_transition _t
-| Final (s) -> print_endline ("Final: " ^ s)
-
 let debug data =
+	print_endline "############################################################" ;
 	print_endline ("name: " ^ data.name) ;
 	print_string "alphabet: [ " ;
 	let _print_alphabet c = print_char c ; print_string " " in
@@ -25,7 +11,25 @@ let debug data =
 	print_string "blank: ";
 	print_char data.blank ;
 	print_endline "" ;
-	Core.Std.Array.iter data.table _print_table
+	let _print_table t = match t with
+	| Normal (s, _t) ->
+		print_endline ("\tNormal: " ^ s) ;
+		let _print_transition _i _t = match _t with
+		| Defined (c, a, i) -> begin
+			let s = "\t\t" ^ Core.Std.Char.to_string (Core.Std.Char.of_int_exn (_i)) ^ " -> " ^ (Core.Std.Char.to_string c) in
+			let name = match data.table.(i) with
+			| Normal (s, t) -> s
+			| Final s -> s
+			in match a with
+			| Right -> print_endline (s ^ " : [Right] | " ^ name  )
+			| Left -> print_endline (s ^ " : [Left]  | " ^ name  )
+			end
+		| Undefined -> () (* print_endline "\tUndefined" *)
+		in Core.Std.Array.iteri _print_transition _t
+	| Final (s) -> print_endline ("\tFinal: " ^ s)
+	in print_endline "transitions:" ;
+	Core.Std.Array.iter data.table _print_table;
+	print_endline "############################################################"
 
 let _get_name state = match state with
 	| Normal (name, _) -> name

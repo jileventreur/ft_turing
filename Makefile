@@ -2,15 +2,15 @@
 # @Date:   2017-08-17T00:51:46+02:00
 # @Email:  adebray@student.42.fr
 # @Last modified by:   adebray
-# @Last modified time: 2017-08-17T01:10:37+02:00
+# @Last modified time: 2017-08-18T03:40:18+02:00
 
 NAME = ft_turing
 
-MLI = tape.mli
+MLI = #tape.mli
 ML = utils.ml \
-	tape.ml \
  	json_utils.ml \
 	table.ml \
+	tape.ml \
 	json.ml \
  	turing.ml \
 	main.ml

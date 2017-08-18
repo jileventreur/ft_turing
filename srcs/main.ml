@@ -12,7 +12,7 @@ let () =
 	match !count with
 	| 2 -> let data = Json.extract opts.(0) in
 		Turing.debug data ;
-		print_string (Turing.exec (Tape.create opts.(1)) data)
+		print_string (Turing.exec (Tape.create data opts.(1)) data)
 	| _ -> print_endline "Usage: ft_turing [-h] jsonfile input"
 
 (*

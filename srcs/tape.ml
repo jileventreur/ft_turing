@@ -1,10 +1,14 @@
+open Table
+
 type tape = {
+	blank: char;
 	data: string;
 	head: int;
 	size: int;
 }
 
-let create str = {
+let create (data: Table.data) str = {
+	blank = data.blank;
 	data = str;
 	head = 0;
 	size = String.length str;
@@ -24,11 +28,11 @@ let set tape _char =
 
 let right tape =
 	if tape.head + 1 < tape.size then { tape with head = tape.head + 1 }
-	else  { tape with head = tape.size ; data = (tape.data ^ "." ) }
+	else  { tape with head = tape.size ; size = tape.size + 1 ; data = (tape.data ^ (String.make 1 tape.blank) ) }
 
 let left tape =
 	if tape.head - 1 >= 0 then { tape with head = tape.head - 1 }
-	else { tape with head = 0 ; data = ("." ^ tape.data) }
+	else { tape with head = 0 ; size = tape.size + 1 ; data = ((String.make 1 tape.blank) ^ tape.data) }
 
 let to_string ?(color = false) tape =
 	let rec _loop ?(i = 0) ?(acc = "") () =
