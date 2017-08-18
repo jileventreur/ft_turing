@@ -7,7 +7,7 @@
 //  sdddddddddddddddddddddddds   @Last modified by: adebray
 //  sdddddddddddddddddddddddds
 //  :ddddddddddhyyddddddddddd:   @Created: 2017-08-17T23:47:18+02:00
-//   odddddddd/`:-`sdddddddds    @Modified: 2017-08-18T02:18:51+02:00
+//   odddddddd/`:-`sdddddddds    @Modified: 2017-08-18T03:50:21+02:00
 //    +ddddddh`+dh +dddddddo
 //     -sdddddh///sdddddds-
 //       .+ydddddddddhs/.
@@ -48,7 +48,7 @@ refs.__proto__.indexOf = function (s) {
 		else return p
 	}, null)
 }
-let data = require(process.argv[2])
+let data = require('./' + process.argv[2])
 
 Object.keys(data).forEach( e => {
 	out += out[out.length - 1] == '|' ? "" : "|"
@@ -57,9 +57,7 @@ Object.keys(data).forEach( e => {
 	else if (v instanceof Array) {
 		if (e == 'states') {
 			out += v.reduce( (p, e) => {
-				// if (refs[e])
 				refs.push(e)
-				console.log(e)
 				return p += refs.indexOf(e)
 			}, "")
 		}
@@ -87,7 +85,7 @@ Object.keys(data).forEach( e => {
 		) )
 	}
 })
-out += '|' + process.argv[3] + '|'
+out += '|' + process.argv[3] + '|~~'
 console.log(out)
 console.log("-----------")
 
@@ -97,8 +95,62 @@ let alphabet = () => Object.keys( Array.from(out).reduce( (p,e) => {
 	return p
 }, {} ) )
 
-log({
+let generate_transitions = (desc) => {
+	let movefrom = (a, b) => `MOVEFROM_${a}_TO_${b}`
+	let d = Object.keys(data)
+	let _ = d.shift()
+	let res = {}
+
+	Object.keys( desc ).forEach( k => {
+		let _ = desc[k]
+		let bool = false
+		_.forEach( e => {
+			console.log(`${k} -> ${e}`)
+			if (e instanceof Object) {
+				bool = true
+			}
+			else
+				console.log(e, desc[e] || `not implemented`)
+		})
+		if (bool)
+			res[k] = _
+	})
+
+	return res
+}
+
+let anything_but = (chars, next, action) => {
+	let res = []
+	alphabet().forEach( e => {
+		if (!(new RegExp(`[${chars}]`).test(e)))
+			res.push({read: e, to_state: next, write: e, action})
+	})
+	return res
+}
+
+let transitions = generate_transitions({
+	'INIT': ['MOVEEND'],
+	// 'MOVERIGHT': anything_but('~', 'MOVERIGHT', 'RIGHT'),
+	'MOVEEND': anything_but('~', 'MOVEEND', 'RIGHT').concat([
+		{read: '~', to_state: 'JUMPLEFT', write: '~', action: 'LEFT'}
+	]),
+	'JUMPLEFT': [
+		{read: '|', to_state: 'CHECK_ALPHA', write: '|', action: 'LEFT'}
+	],
+	'CHECK_ALPHA': anything_but('', 'HALT', 'LEFT')
+	// 'END': anything_but('', 'HALT', 'RIGHT')
+})
+
+let dt = {
 	'name': 'sim_' + process.argv[2].match(/\/([^/]*)$/)[1],
 	'alphabet': alphabet(),
-	'blank': ' '
-})
+	'blank': '~',
+	'states': Object.keys(transitions).concat(['HALT']),
+	'initial': 'MOVEEND',
+	'finals': [ 'HALT' ],
+	'transitions': transitions
+}
+
+// log(dt)
+// console.log(JSON.stringify(dt, null, "  "))
+require('fs').writeFileSync('test.json', JSON.stringify(dt, null, "  "))

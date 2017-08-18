@@ -1,0 +1,160 @@
+{
+  "name": "sim_ispair.json",
+  "alphabet": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "|",
+    "y",
+    "n",
+    ".",
+    "R",
+    "~"
+  ],
+  "blank": "~",
+  "states": [
+    "MOVEEND",
+    "JUMPLEFT",
+    "CHECK_ALPHA",
+    "HALT"
+  ],
+  "initial": "MOVEEND",
+  "finals": [
+    "HALT"
+  ],
+  "transitions": {
+    "MOVEEND": [
+      {
+        "read": "0",
+        "to_state": "MOVEEND",
+        "write": "0",
+        "action": "RIGHT"
+      },
+      {
+        "read": "1",
+        "to_state": "MOVEEND",
+        "write": "1",
+        "action": "RIGHT"
+      },
+      {
+        "read": "2",
+        "to_state": "MOVEEND",
+        "write": "2",
+        "action": "RIGHT"
+      },
+      {
+        "read": "3",
+        "to_state": "MOVEEND",
+        "write": "3",
+        "action": "RIGHT"
+      },
+      {
+        "read": "|",
+        "to_state": "MOVEEND",
+        "write": "|",
+        "action": "RIGHT"
+      },
+      {
+        "read": "y",
+        "to_state": "MOVEEND",
+        "write": "y",
+        "action": "RIGHT"
+      },
+      {
+        "read": "n",
+        "to_state": "MOVEEND",
+        "write": "n",
+        "action": "RIGHT"
+      },
+      {
+        "read": ".",
+        "to_state": "MOVEEND",
+        "write": ".",
+        "action": "RIGHT"
+      },
+      {
+        "read": "R",
+        "to_state": "MOVEEND",
+        "write": "R",
+        "action": "RIGHT"
+      },
+      {
+        "read": "~",
+        "to_state": "JUMPLEFT",
+        "write": "~",
+        "action": "LEFT"
+      }
+    ],
+    "JUMPLEFT": [
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA": [
+      {
+        "read": "0",
+        "to_state": "HALT",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "HALT",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "HALT",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "HALT",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "HALT",
+        "write": "|",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "HALT",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "HALT",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "HALT",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "HALT",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "HALT",
+        "write": "~",
+        "action": "LEFT"
+      }
+    ]
+  }
+}
