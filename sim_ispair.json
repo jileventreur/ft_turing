@@ -1,0 +1,2194 @@
+{
+  "name": "sim_ispair.json",
+  "alphabet": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "|",
+    "y",
+    "n",
+    ".",
+    "R",
+    "~"
+  ],
+  "blank": "~",
+  "states": [
+    "MOVEEND",
+    "JUMPLEFT",
+    "CHECK_ALPHA_0_0",
+    "CHECK_ALPHA_0_1",
+    "CHECK_ALPHA_0_2",
+    "CHECK_ALPHA_0_3",
+    "CHECK_ALPHA_0_4",
+    "CHECK_ALPHA_0_5",
+    "CHECK_ALPHA_0_6",
+    "CHECK_ALPHA_0",
+    "CHECK_ALPHA_y_0",
+    "CHECK_ALPHA_y_1",
+    "CHECK_ALPHA_y_2",
+    "CHECK_ALPHA_y_3",
+    "CHECK_ALPHA_y_4",
+    "CHECK_ALPHA_y_5",
+    "CHECK_ALPHA_y_6",
+    "CHECK_ALPHA_y",
+    "CHECK_ALPHA_n_0",
+    "CHECK_ALPHA_n_1",
+    "CHECK_ALPHA_n_2",
+    "CHECK_ALPHA_n_3",
+    "CHECK_ALPHA_n_4",
+    "CHECK_ALPHA_n_5",
+    "CHECK_ALPHA_n_6",
+    "CHECK_ALPHA_n",
+    "CHECK_ALPHA_._0",
+    "CHECK_ALPHA_._1",
+    "CHECK_ALPHA_._2",
+    "CHECK_ALPHA_._3",
+    "CHECK_ALPHA_._4",
+    "CHECK_ALPHA_._5",
+    "CHECK_ALPHA_._6",
+    "CHECK_ALPHA_.",
+    "CHECK_ALPHA",
+    "HALT"
+  ],
+  "initial": "MOVEEND",
+  "finals": [
+    "HALT"
+  ],
+  "transitions": {
+    "MOVEEND": [
+      {
+        "read": "0",
+        "to_state": "MOVEEND",
+        "write": "0",
+        "action": "RIGHT"
+      },
+      {
+        "read": "1",
+        "to_state": "MOVEEND",
+        "write": "1",
+        "action": "RIGHT"
+      },
+      {
+        "read": "2",
+        "to_state": "MOVEEND",
+        "write": "2",
+        "action": "RIGHT"
+      },
+      {
+        "read": "3",
+        "to_state": "MOVEEND",
+        "write": "3",
+        "action": "RIGHT"
+      },
+      {
+        "read": "|",
+        "to_state": "MOVEEND",
+        "write": "|",
+        "action": "RIGHT"
+      },
+      {
+        "read": "y",
+        "to_state": "MOVEEND",
+        "write": "y",
+        "action": "RIGHT"
+      },
+      {
+        "read": "n",
+        "to_state": "MOVEEND",
+        "write": "n",
+        "action": "RIGHT"
+      },
+      {
+        "read": ".",
+        "to_state": "MOVEEND",
+        "write": ".",
+        "action": "RIGHT"
+      },
+      {
+        "read": "R",
+        "to_state": "MOVEEND",
+        "write": "R",
+        "action": "RIGHT"
+      },
+      {
+        "read": "~",
+        "to_state": "JUMPLEFT",
+        "write": "~",
+        "action": "LEFT"
+      }
+    ],
+    "JUMPLEFT": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA",
+        "write": "|",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA",
+        "write": "~",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_0_0": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_0_0",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_0_0",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_0_0",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_0_0",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_0_0",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_0_0",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_0_0",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_0_0",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_0_0",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_0_1",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_0_1": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_0_1",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_0_1",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_0_1",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_0_1",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_0_1",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_0_1",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_0_1",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_0_1",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_0_1",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_0_2",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_0_2": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_0_2",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_0_2",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_0_2",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_0_2",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_0_2",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_0_2",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_0_2",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_0_2",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_0_2",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_0_3",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_0_3": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_0_3",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_0_3",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_0_3",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_0_3",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_0_3",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_0_3",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_0_3",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_0_3",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_0_3",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_0_4",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_0_4": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_0_4",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_0_4",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_0_4",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_0_4",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_0_4",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_0_4",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_0_4",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_0_4",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_0_4",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_0_5",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_0_5": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_0_5",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_0_5",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_0_5",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_0_5",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_0_5",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_0_5",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_0_5",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_0_5",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_0_5",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_0_6",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_0_6": [
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_0_6",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_0_6",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_0_6",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_0_6",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_0_6",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_0_6",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_0_6",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_0_6",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "0",
+        "to_state": "MOVEEND",
+        "write": "0",
+        "action": "RIGHT"
+      },
+      {
+        "read": "|",
+        "to_state": "HALT",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_0": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_0_0",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_0_0",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_0_0",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_0_0",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_0_0",
+        "write": "|",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_0_0",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_0_0",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_0_0",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_0_0",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_0_0",
+        "write": "~",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_y_0": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_y_0",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_y_0",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_y_0",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_y_0",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_y_0",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_y_0",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_y_0",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_y_0",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_y_0",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_y_1",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_y_1": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_y_1",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_y_1",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_y_1",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_y_1",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_y_1",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_y_1",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_y_1",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_y_1",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_y_1",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_y_2",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_y_2": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_y_2",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_y_2",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_y_2",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_y_2",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_y_2",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_y_2",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_y_2",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_y_2",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_y_2",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_y_3",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_y_3": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_y_3",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_y_3",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_y_3",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_y_3",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_y_3",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_y_3",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_y_3",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_y_3",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_y_3",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_y_4",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_y_4": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_y_4",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_y_4",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_y_4",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_y_4",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_y_4",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_y_4",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_y_4",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_y_4",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_y_4",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_y_5",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_y_5": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_y_5",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_y_5",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_y_5",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_y_5",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_y_5",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_y_5",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_y_5",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_y_5",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_y_5",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_y_6",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_y_6": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_y_6",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_y_6",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_y_6",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_y_6",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_y_6",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_y_6",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_y_6",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_y_6",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "MOVEEND",
+        "write": "y",
+        "action": "RIGHT"
+      },
+      {
+        "read": "|",
+        "to_state": "HALT",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_y": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_y_0",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_y_0",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_y_0",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_y_0",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_y_0",
+        "write": "|",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_y_0",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_y_0",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_y_0",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_y_0",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_y_0",
+        "write": "~",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_n_0": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_n_0",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_n_0",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_n_0",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_n_0",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_n_0",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_n_0",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_n_0",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_n_0",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_n_0",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_n_1",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_n_1": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_n_1",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_n_1",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_n_1",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_n_1",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_n_1",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_n_1",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_n_1",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_n_1",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_n_1",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_n_2",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_n_2": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_n_2",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_n_2",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_n_2",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_n_2",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_n_2",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_n_2",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_n_2",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_n_2",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_n_2",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_n_3",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_n_3": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_n_3",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_n_3",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_n_3",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_n_3",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_n_3",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_n_3",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_n_3",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_n_3",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_n_3",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_n_4",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_n_4": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_n_4",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_n_4",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_n_4",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_n_4",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_n_4",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_n_4",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_n_4",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_n_4",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_n_4",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_n_5",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_n_5": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_n_5",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_n_5",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_n_5",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_n_5",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_n_5",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_n_5",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_n_5",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_n_5",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_n_5",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_n_6",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_n_6": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_n_6",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_n_6",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_n_6",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_n_6",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_n_6",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_n_6",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_n_6",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_n_6",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "MOVEEND",
+        "write": "n",
+        "action": "RIGHT"
+      },
+      {
+        "read": "|",
+        "to_state": "HALT",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_n": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_n_0",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_n_0",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_n_0",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_n_0",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_n_0",
+        "write": "|",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_n_0",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_n_0",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_n_0",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_n_0",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_n_0",
+        "write": "~",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_._0": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_._0",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_._0",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_._0",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_._0",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_._0",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_._0",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_._0",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_._0",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_._0",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_._1",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_._1": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_._1",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_._1",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_._1",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_._1",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_._1",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_._1",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_._1",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_._1",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_._1",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_._2",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_._2": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_._2",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_._2",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_._2",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_._2",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_._2",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_._2",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_._2",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_._2",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_._2",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_._3",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_._3": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_._3",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_._3",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_._3",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_._3",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_._3",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_._3",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_._3",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_._3",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_._3",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_._4",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_._4": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_._4",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_._4",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_._4",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_._4",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_._4",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_._4",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_._4",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_._4",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_._4",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_._5",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_._5": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_._5",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_._5",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_._5",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_._5",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_._5",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_._5",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_._5",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_._5",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_._5",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_._6",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_._6": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_._6",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_._6",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_._6",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_._6",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_._6",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_._6",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_._6",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_._6",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "MOVEEND",
+        "write": ".",
+        "action": "RIGHT"
+      },
+      {
+        "read": "|",
+        "to_state": "HALT",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA_.": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_._0",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_ALPHA_._0",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_ALPHA_._0",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_ALPHA_._0",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "CHECK_ALPHA_._0",
+        "write": "|",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_._0",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_._0",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_._0",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_ALPHA_._0",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "CHECK_ALPHA_._0",
+        "write": "~",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_ALPHA": [
+      {
+        "read": "0",
+        "to_state": "CHECK_ALPHA_0",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_ALPHA_y",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_ALPHA_n",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_ALPHA_.",
+        "write": ".",
+        "action": "LEFT"
+      }
+    ]
+  }
+}

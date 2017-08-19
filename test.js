@@ -7,7 +7,7 @@
 //  sdddddddddddddddddddddddds   @Last modified by: adebray
 //  sdddddddddddddddddddddddds
 //  :ddddddddddhyyddddddddddd:   @Created: 2017-08-17T23:47:18+02:00
-//   odddddddd/`:-`sdddddddds    @Modified: 2017-08-18T03:50:21+02:00
+//   odddddddd/`:-`sdddddddds    @Modified: 2017-08-19T03:09:11+02:00
 //    +ddddddh`+dh +dddddddo
 //     -sdddddh///sdddddds-
 //       .+ydddddddddhs/.
@@ -95,31 +95,13 @@ let alphabet = () => Object.keys( Array.from(out).reduce( (p,e) => {
 	return p
 }, {} ) )
 
-let generate_transitions = (desc) => {
-	let movefrom = (a, b) => `MOVEFROM_${a}_TO_${b}`
-	let d = Object.keys(data)
-	let _ = d.shift()
-	let res = {}
+let small_alphabet = () => Object.keys( Array.from(data.alphabet).reduce( (p,e) => {
+	if (!p[e])
+		p[e] = true
+	return p
+}, {} ) )
 
-	Object.keys( desc ).forEach( k => {
-		let _ = desc[k]
-		let bool = false
-		_.forEach( e => {
-			console.log(`${k} -> ${e}`)
-			if (e instanceof Object) {
-				bool = true
-			}
-			else
-				console.log(e, desc[e] || `not implemented`)
-		})
-		if (bool)
-			res[k] = _
-	})
-
-	return res
-}
-
-let anything_but = (chars, next, action) => {
+let anything_but = function (chars, next, action) {
 	let res = []
 	alphabet().forEach( e => {
 		if (!(new RegExp(`[${chars}]`).test(e)))
@@ -128,18 +110,47 @@ let anything_but = (chars, next, action) => {
 	return res
 }
 
-let transitions = generate_transitions({
-	'INIT': ['MOVEEND'],
-	// 'MOVERIGHT': anything_but('~', 'MOVERIGHT', 'RIGHT'),
-	'MOVEEND': anything_but('~', 'MOVEEND', 'RIGHT').concat([
-		{read: '~', to_state: 'JUMPLEFT', write: '~', action: 'LEFT'}
-	]),
-	'JUMPLEFT': [
-		{read: '|', to_state: 'CHECK_ALPHA', write: '|', action: 'LEFT'}
-	],
-	'CHECK_ALPHA': anything_but('', 'HALT', 'LEFT')
-	// 'END': anything_but('', 'HALT', 'RIGHT')
-})
+let check_alpha = function (chars, next, action) {
+	for (var i = 0; i < Object.keys(data).length; i++) {
+		if (i + 1 < Object.keys(data).length)
+			this[`CHECK_ALPHA_${chars}_${i}`] = anything_but('|', `CHECK_ALPHA_${chars}_${i}`, 'LEFT').concat([
+					{read:'|', to_state: `CHECK_ALPHA_${chars}_${i + 1}`, write: '|', action: 'LEFT'}
+			])
+		else
+			this[`CHECK_ALPHA_${chars}_${i}`] = anything_but(chars + '|', `CHECK_ALPHA_${chars}_${i}`, 'LEFT').concat([
+					{read:chars, to_state: `MOVEEND`, write: chars, action: 'RIGHT'},
+					{read:'|', to_state: `HALT`, write: '|', action: 'LEFT'}
+			])
+	}
+	return anything_but('', `CHECK_ALPHA_${chars}_${0}`, 'LEFT')
+}
+
+let transitions = {
+	'MOVEEND' : function () {
+		return anything_but("~", "MOVEEND", "RIGHT").concat([
+			{read: '~', to_state: 'JUMPLEFT', write: '~', action: 'LEFT'}
+		])
+	},
+	'JUMPLEFT' : function () {
+		return anything_but("", "CHECK_ALPHA", "LEFT")
+	},
+	'CHECK_ALPHA': function () {
+		let res = []
+		small_alphabet().forEach( e => {
+			res.push({read: e, to_state: `CHECK_ALPHA_${e}`, write: e, action: 'LEFT'})
+			this[`CHECK_ALPHA_${e}`] = check_alpha.call(this, e)
+		})
+		return res
+	}
+}
+
+transitions = Object.keys(transitions).reduce( (p, k) => {
+	let v = transitions[k]
+	p[k] = v.call(p)
+	return p
+}, {})
+
+console.log(transitions)
 
 let dt = {
 	'name': 'sim_' + process.argv[2].match(/\/([^/]*)$/)[1],
@@ -151,6 +162,7 @@ let dt = {
 	'transitions': transitions
 }
 
-// log(dt)
-// console.log(JSON.stringify(dt, null, "  "))
-require('fs').writeFileSync('test.json', JSON.stringify(dt, null, "  "))
+log( dt )
+
+require('fs').writeFileSync('input_' + process.argv[2].match(/\/([^/]*)$/)[1], out)
+require('fs').writeFileSync('sim_' + process.argv[2].match(/\/([^/]*)$/)[1], JSON.stringify(dt, null, "  "))
