@@ -40,7 +40,7 @@ let to_string ?(color = false) tape =
 		if i < tape.size then
 			if i = tape.head then
 				if color then
-					_partial_loop ~acc:(acc ^ "\x1B[33m" ^ (Core.Std.Char.to_string (geti tape i)) ^ "\x1B[0m") ()
+					_partial_loop ~acc:(acc ^ "\x1B[31m" ^ (Core.Std.Char.to_string (geti tape i)) ^ "\x1B[0m") ()
 				else
 					_partial_loop ~acc:(acc ^ "<" ^ (Core.Std.Char.to_string (geti tape i)) ^ ">") ()
 			else

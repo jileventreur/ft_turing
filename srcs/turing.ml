@@ -39,7 +39,7 @@ let _print_transition_switch data i read =
 	printf "(%s, %c) -> %s\n" (_get_name @@ Array.get data.table data.state_register) read (_get_name @@ Array.get data.table i)
 
 let rec exec tape data =
-	let s = (Tape.to_string ~color:false tape) in
+	let s = (Tape.to_string ~color:true tape) in
 	print_string ( "[ " ^ s ) ;
 	let rec _loop i = if i < 32 then begin
 		print_char '.' ;

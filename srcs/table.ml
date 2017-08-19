@@ -54,7 +54,7 @@ let _create_transition tab (parsing : parsing) json =
 		end else if not (Json_utils.CharSet.mem (String.get write 0) parsing.alphabet) then begin
 			printf "ft_turing : Error write must be part of alphabet\n"; exit fail
 		end else if not (StringSet.mem to_state parsing.states) then begin
-			printf "ft_turing : Error to_state must be part of states\n"; exit fail
+			printf "ft_turing : Error to_state [%s] must be part of states\n" to_state ; exit fail
 		end else if (not (equal action "LEFT")) && (not (equal action "RIGHT")) then begin
 			printf "ft_turing : Error action must be part LEFT or RIGHT\n"; exit fail
 		end
