@@ -24,7 +24,8 @@ let add_range = ["1"; "."; "+"; "="]
 
 let alphabet = List.map (fun x -> `String x) (state_range @ add_range)
 
-type absfun = state list
+type absfun = state list (* first state is an entry point for the next one *)
+type labsfun = absfun list
 
 let apply_name name =
 	states := (`String name) :: !states; name 

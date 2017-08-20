@@ -1,0 +1,26 @@
+input : "A0|A0B.R.CyR|B0A.R.CnR#"
+-: "A0|A0B.R.CyR|B0A.R.CnR#!00"
+
+
+Etape :
+	- remonter le ruban , lire le char, copier dans le registre
+	- retrouver l'etat -> transition (curryfication)
+
+
+Registre : Etat char_lu
+
+Etat : A B C
+
+	char lu : 0 .
+	next : A B C
+	char write : 0 . y n
+	action : R L
+
+Ruban m1: #1+=|.|ABC|A1A1R+B1R.D.R=D=R;B
+
+ABC|A1A1R+B1R.D.R=D=R
+
+une fonction ne peut pas faire appel a un autre etat que ceux definit et next
+un etat est une fonction
+		
+etat : 
