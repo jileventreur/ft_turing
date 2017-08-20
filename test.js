@@ -7,7 +7,7 @@
 //  sdddddddddddddddddddddddds   @Last modified by: adebray
 //  sdddddddddddddddddddddddds
 //  :ddddddddddhyyddddddddddd:   @Created: 2017-08-17T23:47:18+02:00
-//   odddddddd/`:-`sdddddddds    @Modified: 2017-08-19T03:09:11+02:00
+//   odddddddd/`:-`sdddddddds    @Modified: 2017-08-20T03:45:34+02:00
 //    +ddddddh`+dh +dddddddo
 //     -sdddddh///sdddddds-
 //       .+ydddddddddhs/.
@@ -53,7 +53,7 @@ let data = require('./' + process.argv[2])
 Object.keys(data).forEach( e => {
 	out += out[out.length - 1] == '|' ? "" : "|"
 	let v = data[e]
-	if ( e == 'name') {}
+	if (e == 'name') {}
 	else if (v instanceof Array) {
 		if (e == 'states') {
 			out += v.reduce( (p, e) => {
@@ -85,11 +85,11 @@ Object.keys(data).forEach( e => {
 		) )
 	}
 })
-out += '|' + process.argv[3] + '|~~'
+out += '|' + process.argv[3] + '|'
 console.log(out)
 console.log("-----------")
 
-let alphabet = () => Object.keys( Array.from(out).reduce( (p,e) => {
+let alphabet = () => Object.keys( Array.from(out + '~').reduce( (p,e) => {
 	if (!p[e])
 		p[e] = true
 	return p
@@ -116,13 +116,66 @@ let check_alpha = function (chars, next, action) {
 			this[`CHECK_ALPHA_${chars}_${i}`] = anything_but('|', `CHECK_ALPHA_${chars}_${i}`, 'LEFT').concat([
 					{read:'|', to_state: `CHECK_ALPHA_${chars}_${i + 1}`, write: '|', action: 'LEFT'}
 			])
-		else
-			this[`CHECK_ALPHA_${chars}_${i}`] = anything_but(chars + '|', `CHECK_ALPHA_${chars}_${i}`, 'LEFT').concat([
-					{read:chars, to_state: `MOVEEND`, write: chars, action: 'RIGHT'},
+		else {
+			if (chars.indexOf('|') == -1)
+				_c = chars + '|'
+			this[`CHECK_ALPHA_${chars}_${i}`] = anything_but(_c, `CHECK_ALPHA_${chars}_${i}`, 'LEFT').concat([
+					{read:chars, to_state: `ALPHA_VALID_${chars}_0`, write: chars, action: 'RIGHT'},
 					{read:'|', to_state: `HALT`, write: '|', action: 'LEFT'}
 			])
+		}
 	}
 	return anything_but('', `CHECK_ALPHA_${chars}_${0}`, 'LEFT')
+}
+
+let alpha_valid = function (chars, next, action) {
+	for (var i = 0; i < Object.keys(data).length; i++) {
+		if (i + 1 < Object.keys(data).length)
+			this[`ALPHA_VALID_${chars}_${i}`] = anything_but('|', `ALPHA_VALID_${chars}_${i}`, 'RIGHT').concat([
+					{read:'|', to_state: `ALPHA_VALID_${chars}_${i + 1}`, write: '|', action: 'RIGHT'}
+			])
+		else {
+			if (chars.indexOf('|') == -1)
+				_c = chars + '|'
+			this[`ALPHA_VALID_${chars}_${i}`] = anything_but(_c, `ALPHA_VALID_${chars}_${i}`, 'LEFT').concat([
+					{read:chars, to_state: `PUSH_BACK_${chars}`, write: chars, action: 'RIGHT'},
+					{read:'|', to_state: `HALT`, write: '|', action: 'LEFT'}
+			])
+		}
+	}
+	return anything_but('', `ALPHA_VALID_${chars}_${0}`, 'LEFT')
+}
+
+let push_back = function (chars, next, action) {
+	// for (var i = 0; i < process.argv[3].length + 1; i++) {
+		// if (i + 1 < process.argv[3].length + 1) {
+		// 	this[`PUSH_BACK_${chars}_${i}`] = anything_but('', `PUSH_BACK_${chars}_${i + 1}`, 'RIGHT').concat([
+		// 			// {read:'|', to_state: `PUSH_BACK_${chars}_${i + 1}`, write: '|', action: 'RIGHT'}
+		// 	])
+		// }
+		// else {
+		// 	if (chars.indexOf('|') == -1)
+		// 		_c = chars + '|'
+			this[`PUSH_BACK_${chars}`] = anything_but('|', `PUSH_BACK_${chars}`, 'RIGHT').concat([
+					{read:'|', to_state: `HALT`, write: chars, action: 'LEFT'}
+			])
+		// }
+	// }
+
+	// 	if (i + 1 < Object.keys(data).length)
+	// 		this[`PUSH_BACK_${chars}_${i}`] = anything_but('|', `PUSH_BACK_${chars}_${i}`, 'RIGHT').concat([
+	// 				{read:'|', to_state: `PUSH_BACK_${chars}_${i + 1}`, write: '|', action: 'RIGHT'}
+	// 		])
+	// 	else {
+	// 		if (chars.indexOf('|') == -1)
+	// 			_c = chars + '|'
+	// 		this[`PUSH_BACK_${chars}_${i}`] = anything_but(_c, `PUSH_BACK_${chars}_${i}`, 'LEFT').concat([
+	// 				{read:chars, to_state: `PUSH_BACK_${chars}`, write: chars, action: 'RIGHT'},
+	// 				{read:'|', to_state: `HALT`, write: '|', action: 'LEFT'}
+	// 		])
+	// 	}
+	// }
+	// return anything_but('', `PUSH_BACK_${chars}_${0}`, 'LEFT')
 }
 
 let transitions = {
@@ -136,12 +189,23 @@ let transitions = {
 	},
 	'CHECK_ALPHA': function () {
 		let res = []
-		small_alphabet().forEach( e => {
-			res.push({read: e, to_state: `CHECK_ALPHA_${e}`, write: e, action: 'LEFT'})
-			this[`CHECK_ALPHA_${e}`] = check_alpha.call(this, e)
+		alphabet().forEach( e => {
+			if (e != '|') {
+				res.push({read: e, to_state: `CHECK_ALPHA_${e}_0`, write: e, action: 'LEFT'})
+				// this[`CHECK_ALPHA_${e}`] = check_alpha.call(this, e)
+				check_alpha.call(this, e)
+				alpha_valid.call(this, e)
+				push_back.call(this, e)
+				// this[`ALPHA_VALID_${e}`] =
+			}
 		})
 		return res
-	}
+	},
+	// 'ALPHA_VALID': function () {
+	// 	return anything_but("~", "ALPHA_VALID", "RIGHT").concat([
+	// 		{read: '~', to_state: 'HALT', write: '~', action: 'LEFT'}
+	// 	])
+	// }
 }
 
 transitions = Object.keys(transitions).reduce( (p, k) => {
@@ -150,19 +214,31 @@ transitions = Object.keys(transitions).reduce( (p, k) => {
 	return p
 }, {})
 
-console.log(transitions)
+Object.keys(transitions).forEach( k => {
+	let _ = {}
+	transitions[k].forEach( v => {
+		if (!_[v.read])
+			_[v.read] = true
+		else {
+			console.log(k)
+		}
+	})
+
+} )
+
+// console.log(transitions)
 
 let dt = {
 	'name': 'sim_' + process.argv[2].match(/\/([^/]*)$/)[1],
 	'alphabet': alphabet(),
 	'blank': '~',
-	'states': Object.keys(transitions).concat(['HALT']),
+	'states': Object.keys(transitions).concat(['HALT', 'TEST']),
 	'initial': 'MOVEEND',
-	'finals': [ 'HALT' ],
+	'finals': [ 'HALT', 'TEST' ],
 	'transitions': transitions
 }
 
-log( dt )
+// log( dt )
 
 require('fs').writeFileSync('input_' + process.argv[2].match(/\/([^/]*)$/)[1], out)
 require('fs').writeFileSync('sim_' + process.argv[2].match(/\/([^/]*)$/)[1], JSON.stringify(dt, null, "  "))
