@@ -38,7 +38,7 @@ let _get_name state = match state with
 let _print_transition_switch data i read =
 	printf "(%s, %c) -> %s\n" (_get_name @@ Array.get data.table data.state_register) read (_get_name @@ Array.get data.table i)
 
-let rec exec tape data =
+let rec exec pretty tape data =
 	let s = (Tape.to_string ~color:true tape) in
 	print_string ( "[ " ^ s ) ;
 	let rec _loop i = if i < 32 then begin
@@ -57,7 +57,13 @@ let rec exec tape data =
 			let tape = Tape.set tape c in
 			let next f =
 				_print_transition_switch data i read ;
-				exec (f tape) {data with state_register = i}
+				if pretty then begin
+					flush stdout ;
+					ignore( Unix.select [] [] [] 0.01 ) ;
+					print_string "\027M\027[2K";
+					flush stdout
+				end ;
+				exec pretty (f tape) {data with state_register = i}
 			in match a with
 			| Right -> next Tape.right
 			| Left -> next Tape.left

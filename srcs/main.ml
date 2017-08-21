@@ -4,15 +4,18 @@ open Json
 let () =
 	let count = ref 0 in
 	let opts = [| "jsonfile" ; "input" |] in
+	let pretty = ref false in
 	let getopt opts s =
 		opts.(!count) <- s;
 		incr count
 	in
-	Arg.parse [] (getopt opts) "Usage: ft_turing [-h] jsonfile input";
+	Arg.parse [
+		("--pretty", Arg.Set pretty , "A prettier output" )
+	] (getopt opts) "Usage: ft_turing [-h] jsonfile input";
 	match !count with
 	| 2 -> let data = Json.extract opts.(0) in
 		Turing.debug data ;
-		print_string (Turing.exec (Tape.create data opts.(1)) data)
+		print_string (Turing.exec !pretty (Tape.create data opts.(1)) data)
 	| _ -> print_endline "Usage: ft_turing [-h] jsonfile input"
 
 (*

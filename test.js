@@ -7,7 +7,7 @@
 //  sdddddddddddddddddddddddds   @Last modified by: adebray
 //  sdddddddddddddddddddddddds
 //  :ddddddddddhyyddddddddddd:   @Created: 2017-08-17T23:47:18+02:00
-//   odddddddd/`:-`sdddddddds    @Modified: 2017-08-20T03:45:34+02:00
+//   odddddddd/`:-`sdddddddds    @Modified: 2017-08-21T06:01:57+02:00
 //    +ddddddh`+dh +dddddddo
 //     -sdddddh///sdddddds-
 //       .+ydddddddddhs/.
@@ -137,9 +137,13 @@ let alpha_valid = function (chars, next, action) {
 		else {
 			if (chars.indexOf('|') == -1)
 				_c = chars + '|'
-			this[`ALPHA_VALID_${chars}_${i}`] = anything_but(_c, `ALPHA_VALID_${chars}_${i}`, 'LEFT').concat([
-					{read:chars, to_state: `PUSH_BACK_${chars}`, write: chars, action: 'RIGHT'},
-					{read:'|', to_state: `HALT`, write: '|', action: 'LEFT'}
+			this[`ALPHA_VALID_${chars}_${i}`] = anything_but('~', `ALPHA_VALID_${chars}_${i}`, 'RIGHT').concat([
+					// {read:chars, to_state: `PUSH_BACK_${chars}`, write: chars, action: 'RIGHT'},
+					{read:'~', to_state: `JUMP_ERASE_${chars}`, write: chars, action: 'LEFT'},
+					// {read:'|', to_state: `TEST`, write: '|', action: 'LEFT'}
+			])
+			this[`JUMP_ERASE_${chars}`] = anything_but('|', `JUMP_ERASE_${chars}`, 'LEFT').concat([
+				{read:'|', to_state: `TO_SECTION_${chars}`, write: '|', action: 'LEFT'}
 			])
 		}
 	}
@@ -156,11 +160,53 @@ let push_back = function (chars, next, action) {
 		// else {
 		// 	if (chars.indexOf('|') == -1)
 		// 		_c = chars + '|'
-			this[`PUSH_BACK_${chars}`] = anything_but('|', `PUSH_BACK_${chars}`, 'RIGHT').concat([
-					{read:'|', to_state: `HALT`, write: chars, action: 'LEFT'}
-			])
+		// let chars = chars
+
+		this[`ERASE_${chars}`] = anything_but(chars + '|', `ERASE_${chars}`, 'LEFT').concat([
+			{read: '|', to_state: 'ERROR', write: '|', action: 'LEFT'},
+			{read: chars, to_state: `TO_SECTION_${chars}`, write: '~', action: 'LEFT'}
+		])
+		this[`TO_SECTION_${chars}`] = anything_but('|', `TO_SECTION_${chars}`, 'LEFT').concat([
+			{read: '|', to_state: `TMP_ALPHA_VALID_${chars}`, write: '|', action: 'RIGHT'}
+		])
+		this[`TMP_ALPHA_VALID_${chars}`] = anything_but(chars + '|', `TMP_ALPHA_VALID_${chars}`, 'RIGHT').concat([
+			{read: chars, to_state: `ALPHA_VALID_${chars}_6`, write: '~', action: 'RIGHT'},
+			{read: '|', to_state: `HALT`, write: '|', action: 'RIGHT'},
+			// {read: '~', to_state: `TEST`, write: '~', action: 'RIGHT'}
+		])
+
+		// this[`PUSH_BACK_${chars}`] = anything_but('~', `PUSH_BACK_${chars}`, 'RIGHT').concat([
+		// 		{read:'~', to_state: `MOVE_FRONT_${chars}`, write: chars, action: 'LEFT'}
+		// ])
+		// this[`MOVE_FRONT_${chars}`] = anything_but('|', `MOVE_FRONT_${chars}`, 'LEFT').concat([
+		// 		{read: '|', to_state: `ERASE_${chars}_0`, write: '|', action: 'RIGHT'}
+		// ])
+		//
+		// for (var i = 0; i < process.argv[3].length + 1; i++) {
+		//
+		// 	if (i + 1 < process.argv[3].length + 1) {
+		// 		this[`ERASE_${chars}_${i}`] = anything_but(chars, `ERASE_${chars}_${i + 1}`, 'LEFT').concat([
+		// 			{read: chars, to_state: `ERASE_${chars}_${i + 1}`, write: '~', action: 'LEFT'},
+		// 		])
+		// 	}
+		// 	else {
+		// 		if (chars.indexOf('|') == -1)
+		// 			_c = chars + '|'
+		//
+		// 		this[`ERASE_${chars}_${i}`] = anything_but('~', `HALT`, 'LEFT').concat([
+		// 			{read: '~', to_state: `TEST`, write: '~', action: 'LEFT'}
+		// 		])
+		// 	}
 		// }
-	// }
+
+// {
+// 	CHECK_ALPHA: {
+// 		'a', 'CHECK_ALPHA_a_0', 'a', 'LEFT'
+// 		'b', 'CHECK_ALPHA_b_0', 'b', 'LEFT'
+// 		'c', 'CHECK_ALPHA_c_0', 'c', 'LEFT'
+// 		'd', 'CHECK_ALPHA_d_0', 'd', 'LEFT'
+// 	}
+// }
 
 	// 	if (i + 1 < Object.keys(data).length)
 	// 		this[`PUSH_BACK_${chars}_${i}`] = anything_but('|', `PUSH_BACK_${chars}_${i}`, 'RIGHT').concat([
@@ -190,7 +236,7 @@ let transitions = {
 	'CHECK_ALPHA': function () {
 		let res = []
 		alphabet().forEach( e => {
-			if (e != '|') {
+			if (e != '|' && e != '~') {
 				res.push({read: e, to_state: `CHECK_ALPHA_${e}_0`, write: e, action: 'LEFT'})
 				// this[`CHECK_ALPHA_${e}`] = check_alpha.call(this, e)
 				check_alpha.call(this, e)
@@ -232,9 +278,9 @@ let dt = {
 	'name': 'sim_' + process.argv[2].match(/\/([^/]*)$/)[1],
 	'alphabet': alphabet(),
 	'blank': '~',
-	'states': Object.keys(transitions).concat(['HALT', 'TEST']),
+	'states': Object.keys(transitions).concat(['HALT', 'TEST', 'ERROR']),
 	'initial': 'MOVEEND',
-	'finals': [ 'HALT', 'TEST' ],
+	'finals': [ 'HALT', 'TEST', 'ERROR' ],
 	'transitions': transitions
 }
 
