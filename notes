@@ -3,13 +3,13 @@ formatage de la machine :
 ~~|alphabet|blank|states|init|finals|transition|_input|~~
                                         cursor -^
 
-exemple : |0yn.|.|ABC|A|C|A0B.RA.CyRB0A.RB.CnR|_0..1|~~
+exemple : |1+=.|.|ABC|A|C|A1B.RA.C+RB1A.RB.C=R|_1..1|~~
 
 formatage d'execution de la machine :
 	
 |registre|finals|transition|input|
 
-exemple : |A0|.|C|A0B.RA.CyRB0A.RB.CnR|0..1|~~
+exemple : |A1|.|C|A1B.RA.C+RB1A.RB.C=R|01.1|~~
 
 Registre : Etat char_lu
 
@@ -23,23 +23,23 @@ Etat : A B C
 -----------------------------------------------
 
 initial : 
-	|0yn.|.|ABC|A|C|A0B.RA.CyRB0A.RB.CnR|_0..1|
+	|1+=.|.|ABC|A|C|A1B.RA.C+RB1A.RB.C=R|_1..1|
 
 blank l'alphabet :
-	~~~.|ABC|A|C|A0B.RA.CyRB0A.RB.CnR|_0..1
+	~~~.|ABC|A|C|A1B.RA.C+RB1A.RB.C=R|_1..1
 
 creer le registre (depuis initial) :
-	|A?|ABC|A|C|A0B.RA.CyRB0A.RB.CnR|_0..1|
+	|A?|ABC|A|C|A1B.RA.C+RB1A.RB.C=R|_1..1|
 
 blank la liste d'etat :
-	|A?~~~~|A|C|A0B.RA.CyRB0A.RB.CnR|_0..1|
+	|A?~~~~|A|C|A1B.RA.C+RB1A.RB.C=R|_1..1|
 
 decaler le registre  :
-	~~~A?|A|C|A0B.RA.CyRB0A.RB.CnR|_0..1|
+	~~~A?|A|C|A1B.RA.C+RB1A.RB.C=R|_1..1|
 
 blank init :
-	~~~A?~~|C|A0B.RA.CyRB0A.RB.CnR|_0..1|
+	~~~A?~~|C|A1B.RA.C+RB1A.RB.C=R|_1..1|
 
 decaler :
-	A?|C|A0B.RA.CyRB0A.RB.CnR|_0..1|
+	A?|C|A1B.RA.C+RB1A.RB.C=R|_1..1|
 
