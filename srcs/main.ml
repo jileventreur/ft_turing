@@ -17,6 +17,15 @@ let () =
 	match !count with
 	| 2 -> let data = Json.extract opts.(0) in
 		(* Turing.debug data ; *)
+		(* match String.contains opts.(1) '1' with
+		| true -> print_endline "true"
+		| false -> print_endline "false" *)
+		(* CharSet.iter data.alphabet *)
+		(* Array.fold  *)
+		String.iter (fun e -> match CharSet.exists (fun c -> c = e) data.alphabet with
+			| true -> ()
+			| false -> print_endline "Ill formated input" ; ignore (exit 1)
+		) opts.(1) ;
 		print_string (Turing.exec !pretty (not !color) (Tape.create data opts.(1)) data)
 	| _ -> print_endline "Usage: ft_turing [-h] jsonfile input"
 
