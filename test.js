@@ -7,7 +7,7 @@
 //  sdddddddddddddddddddddddds   @Last modified by: adebray
 //  sdddddddddddddddddddddddds
 //  :ddddddddddhyyddddddddddd:   @Created: 2017-08-17T23:47:18+02:00
-//   odddddddd/`:-`sdddddddds    @Modified: 2017-08-21T23:31:42+02:00
+//   odddddddd/`:-`sdddddddds    @Modified: 2017-08-22T21:29:19+02:00
 //    +ddddddh`+dh +dddddddo
 //     -sdddddh///sdddddds-
 //       .+ydddddddddhs/.
@@ -279,19 +279,82 @@ let transitions = {
 			}
 
 			if (!this[`1_IS_STATE`])
-				this[`1_IS_STATE`] = []
+				this[`1_IS_STATE`] = [{read: '|', to_state: `1_COPY_INPUT`, write: '|', action: 'RIGHT'}]
 			if (!this[`1_IS_ALPHA`])
 				this[`1_IS_ALPHA`] = []
 			if (!this[`2_IS_STATE`])
 				this[`2_IS_STATE`] = []
 			if (!this[`2_IS_ALPHA`])
 				this[`2_IS_ALPHA`] = []
+			if (!this[`1_COPY_INPUT`])
+				this[`1_COPY_INPUT`] = anything_but('|', '1_COPY_INPUT', 'RIGHT').concat([
+					{read: '|', to_state: '2_COPY_INPUT', write: '|', action: 'RIGHT'},
+				])
+			if (!this[`2_COPY_INPUT`])
+				this[`2_COPY_INPUT`] = anything_but('~', '2_COPY_INPUT', 'RIGHT').concat([
+					{read: '~', to_state: 'COPY_INPUT', write: '~', action: 'LEFT'}
+				])
+			if (!this[`COPY_INPUT`])
+				this[`COPY_INPUT`] = [
+					{read: '|', to_state: '1_TO_FINAL_STATE', write: '|', action: 'LEFT'}
+				]
+			if (!this[`1_TO_FINAL_STATE`])
+				this[`1_TO_FINAL_STATE`] = anything_but('|', '1_TO_FINAL_STATE', 'LEFT').concat([
+					{read: '|', to_state: '2_TO_FINAL_STATE', write: '|', action: 'LEFT'}
+				])
+			if (!this[`2_TO_FINAL_STATE`])
+				this[`2_TO_FINAL_STATE`] = anything_but('|', '2_TO_FINAL_STATE', 'LEFT').concat([
+					{read: '|', to_state: 'CHECK_FINAL', write: '|', action: 'LEFT'}
+				])
+			if (!this[`CHECK_FINAL`])
+				this[`CHECK_FINAL`] = [
+					{read: '|', to_state: 'CHECK_INITIAL', write: '|', action: 'LEFT'}
+				]
+			if (!this[`CHECK_INITIAL`])
+				this[`CHECK_INITIAL`] = []
+			if (!this[`ALL_VALID`])
+				this[`ALL_VALID`] = anything_but('', 'TEST', 'RIGHT')
 
-			if (e != '|') {
+			if (e != '|' && e != '~') {
 				this[`1_IS_STATE`].push({read: e, to_state: `1_IS_STATE_${e}_0`, write: '~', action: 'LEFT'})
 				this[`1_IS_ALPHA`].push({read: e, to_state: `1_IS_ALPHA_${e}_0`, write: '~', action: 'LEFT'})
 				this[`2_IS_STATE`].push({read: e, to_state: `2_IS_STATE_${e}_0`, write: '~', action: 'LEFT'})
 				this[`2_IS_ALPHA`].push({read: e, to_state: `2_IS_ALPHA_${e}_0`, write: '~', action: 'LEFT'})
+
+				this[`COPY_INPUT`].push({read: e, to_state: `COPY_INPUT_${e}`, write: '~', action: 'LEFT'})
+				this[`COPY_INPUT_${e}`] = anything_but('~|', `COPY_INPUT_${e}`, 'LEFT').concat([
+					{read: '~', to_state: `COPY_INPUT_${e}`, write: e, action: 'LEFT'},
+					{read: '|', to_state: `WRITE_${e}`, write: '|', action: 'LEFT'}
+				])
+				this[`WRITE_${e}`] = anything_but('~', `WRITE_${e}`, 'LEFT').concat([
+					{read: '~', to_state: `1_COPY_INPUT`, write: e, action: 'LEFT'}
+				])
+
+				this[`CHECK_FINAL`].push({read: e, to_state: `1_CHECK_FINAL_${e}`, write: '~', action: 'LEFT'})
+				this[`1_CHECK_FINAL_${e}`] = anything_but('|', `1_CHECK_FINAL_${e}`, 'LEFT').concat([
+					{read: '|', to_state: `2_CHECK_FINAL_${e}`, write: '|', action: 'LEFT'}
+				])
+				this[`2_CHECK_FINAL_${e}`] = anything_but('|', `2_CHECK_FINAL_${e}`, 'LEFT').concat([
+					{read: '|', to_state: `3_CHECK_FINAL_${e}`, write: '|', action: 'LEFT'}
+				])
+				this[`3_CHECK_FINAL_${e}`] = anything_but('|' + e, `3_CHECK_FINAL_${e}`, 'LEFT').concat([
+					{read: '|', to_state: `STATE_ERROR`, write: '|', action: 'LEFT'},
+					{read: e, to_state: `VALID_STATE_${e}`, write: e, action: 'RIGHT'}
+				])
+				this[`VALID_STATE_${e}`] = anything_but('~', `VALID_STATE_${e}`, 'RIGHT').concat([
+					{ read: '~', to_state: 'CHECK_FINAL', write: e, action: 'LEFT'}
+				])
+
+				this[`CHECK_INITIAL`].push({ read: e, to_state: `1_CHECK_INITIAL_${e}`, write: '~', action: 'LEFT'})
+				// this[`CHECK_INITIAL`].push({ read: e, to_state: `HALT`, write: '~', action: 'LEFT'})
+				this[`1_CHECK_INITIAL_${e}`] = anything_but('|', `1_CHECK_INITIAL_${e}`, 'LEFT').concat([
+					{ read: '|', to_state: `2_CHECK_INITIAL_${e}`, write: '|', action: 'LEFT' }
+				])
+				this[`2_CHECK_INITIAL_${e}`] = anything_but('~' + e, `2_CHECK_INITIAL_${e}`, 'LEFT').concat([
+					{ read: e, to_state: `ALL_VALID`, write: e, action: 'RIGHT' },
+					{ read: '~', to_state: `STATE_ERROR`, write: '~', action: 'RIGHT' }
+				])
+
 				for (var i = 0; i < 4; i++) {
 					if (i < 3) {
 						this[`1_IS_STATE_${e}_${i}`] = anything_but('|', `1_IS_STATE_${e}_${i}`, 'LEFT').concat([
