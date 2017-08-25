@@ -7,7 +7,7 @@
 //  sdddddddddddddddddddddddds   @Last modified by: adebray
 //  sdddddddddddddddddddddddds
 //  :ddddddddddhyyddddddddddd:   @Created: 2017-08-17T23:47:18+02:00
-//   odddddddd/`:-`sdddddddds    @Modified: 2017-08-22T21:29:19+02:00
+//   odddddddd/`:-`sdddddddds    @Modified: 2017-08-24T17:23:44+02:00
 //    +ddddddh`+dh +dddddddo
 //     -sdddddh///sdddddds-
 //       .+ydddddddddhs/.
@@ -314,6 +314,22 @@ let transitions = {
 				this[`CHECK_INITIAL`] = []
 			if (!this[`ALL_VALID`])
 				this[`ALL_VALID`] = anything_but('', 'TEST', 'RIGHT')
+			if (!this[`1_CHECK_BLANK`])
+				this[`1_CHECK_BLANK`] = anything_but('|', '1_CHECK_BLANK', 'LEFT').concat([
+					{read: '|', to_state: '2_CHECK_BLANK', write: '|', action: 'LEFT'}
+				])
+			if (!this[`2_CHECK_BLANK`])
+				this[`2_CHECK_BLANK`] = anything_but('|', '2_CHECK_BLANK', 'LEFT').concat([
+					{read: '|', to_state: '3_CHECK_BLANK', write: '|', action: 'LEFT'}
+				])
+			if (!this[`3_CHECK_BLANK`])
+				this[`3_CHECK_BLANK`] = []
+			if (!this[`CHECK_BLANK_${e}`])
+				this[`CHECK_BLANK_${e}`] = []
+			if (!this[`VALID_BLANK_${e}`])
+				this[`VALID_BLANK_${e}`] = []
+			if (!this[`WRITE_BLANK_${e}`])
+				this[`WRITE_BLANK_${e}`] = []
 
 			if (e != '|' && e != '~') {
 				this[`1_IS_STATE`].push({read: e, to_state: `1_IS_STATE_${e}_0`, write: '~', action: 'LEFT'})
@@ -351,9 +367,21 @@ let transitions = {
 					{ read: '|', to_state: `2_CHECK_INITIAL_${e}`, write: '|', action: 'LEFT' }
 				])
 				this[`2_CHECK_INITIAL_${e}`] = anything_but('~' + e, `2_CHECK_INITIAL_${e}`, 'LEFT').concat([
-					{ read: e, to_state: `ALL_VALID`, write: e, action: 'RIGHT' },
+					{ read: e, to_state: `WRITE_INITIAL_${e}`, write: e, action: 'RIGHT' },
 					{ read: '~', to_state: `STATE_ERROR`, write: '~', action: 'RIGHT' }
 				])
+				this[`WRITE_INITIAL_${e}`] = anything_but('~', `WRITE_INITIAL_${e}`, 'RIGHT').concat([
+					{ read: '~', to_state: `1_CHECK_BLANK`, write: e, action: 'LEFT' }
+				])
+
+				this[`3_CHECK_BLANK`].push({ read: e, to_state: `CHECK_BLANK_${e}`, write: '~', action: 'LEFT'})
+				this[`CHECK_BLANK_${e}`].push({ read: e, to_state: `VALID_BLANK_${e}`, write: e, action: 'LEFT'})
+				this[`CHECK_BLANK_${e}`].push({ read: '|', to_state: `VALID_BLANK_${e}`, write: '|', action: 'LEFT'})
+				this[`CHECK_BLANK_${e}`].push({ read: '~', to_state: `ALPHA_ERROR`, write: '~', action: 'LEFT'})
+				this[`VALID_BLANK_${e}`].push({ read: e, to_state: `WRITE_BLANK_${e}`, write: e, action: 'RIGHT'})
+				this[`VALID_BLANK_${e}`].push({ read: '~', to_state: `ALPHA_ERROR`, write: '~', action: 'RIGHT'})
+				this[`WRITE_BLANK_${e}`].push({ read: '~', to_state: `TO_BEGIN`, write: e, action: 'RIGHT'})
+				this[`WRITE_BLANK_${e}`].push({ read: '|', to_state: `WRITE_BLANK_${e}`, write: '|', action: 'RIGHT'})
 
 				for (var i = 0; i < 4; i++) {
 					if (i < 3) {
@@ -426,6 +454,10 @@ let transitions = {
 
 		res.push({read: '|', to_state: `TO_SECTION_HEAD`, write: '|', action: 'LEFT'})
 		res.push({read: '~', to_state: `CHECK_ALPHA`, write: '~', action: 'LEFT'})
+
+		this[`TO_BEGIN`] = anything_but('~', 'TO_BEGIN', 'LEFT').concat([
+			{ read: '~', to_state: 'TEST', write: '~', action: 'RIGHT' }
+		])
 		return res
 	},
 	// 'ALPHA_VALID': function () {

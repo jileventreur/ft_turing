@@ -57,6 +57,12 @@
     "CHECK_FINAL",
     "CHECK_INITIAL",
     "ALL_VALID",
+    "1_CHECK_BLANK",
+    "2_CHECK_BLANK",
+    "3_CHECK_BLANK",
+    "CHECK_BLANK_0",
+    "VALID_BLANK_0",
+    "WRITE_BLANK_0",
     "COPY_INPUT_0",
     "WRITE_0",
     "1_CHECK_FINAL_0",
@@ -65,6 +71,7 @@
     "VALID_STATE_0",
     "1_CHECK_INITIAL_0",
     "2_CHECK_INITIAL_0",
+    "WRITE_INITIAL_0",
     "1_IS_STATE_0_0",
     "2_IS_STATE_0_0",
     "1_IS_STATE_0_1",
@@ -110,6 +117,9 @@
     "TMP_ALPHA_VALID_1_0",
     "TMP_ALPHA_VALID_1_1",
     "TMP_ALPHA_VALID_1_2",
+    "CHECK_BLANK_1",
+    "VALID_BLANK_1",
+    "WRITE_BLANK_1",
     "COPY_INPUT_1",
     "WRITE_1",
     "1_CHECK_FINAL_1",
@@ -118,6 +128,7 @@
     "VALID_STATE_1",
     "1_CHECK_INITIAL_1",
     "2_CHECK_INITIAL_1",
+    "WRITE_INITIAL_1",
     "1_IS_STATE_1_0",
     "2_IS_STATE_1_0",
     "1_IS_STATE_1_1",
@@ -163,6 +174,9 @@
     "TMP_ALPHA_VALID_2_0",
     "TMP_ALPHA_VALID_2_1",
     "TMP_ALPHA_VALID_2_2",
+    "CHECK_BLANK_2",
+    "VALID_BLANK_2",
+    "WRITE_BLANK_2",
     "COPY_INPUT_2",
     "WRITE_2",
     "1_CHECK_FINAL_2",
@@ -171,6 +185,7 @@
     "VALID_STATE_2",
     "1_CHECK_INITIAL_2",
     "2_CHECK_INITIAL_2",
+    "WRITE_INITIAL_2",
     "1_IS_STATE_2_0",
     "2_IS_STATE_2_0",
     "1_IS_STATE_2_1",
@@ -216,6 +231,9 @@
     "TMP_ALPHA_VALID_3_0",
     "TMP_ALPHA_VALID_3_1",
     "TMP_ALPHA_VALID_3_2",
+    "CHECK_BLANK_3",
+    "VALID_BLANK_3",
+    "WRITE_BLANK_3",
     "COPY_INPUT_3",
     "WRITE_3",
     "1_CHECK_FINAL_3",
@@ -224,6 +242,7 @@
     "VALID_STATE_3",
     "1_CHECK_INITIAL_3",
     "2_CHECK_INITIAL_3",
+    "WRITE_INITIAL_3",
     "1_IS_STATE_3_0",
     "2_IS_STATE_3_0",
     "1_IS_STATE_3_1",
@@ -248,6 +267,9 @@
     "2_VALID_STATE_3",
     "1_VALID_ALPHA_3",
     "2_VALID_ALPHA_3",
+    "CHECK_BLANK_|",
+    "VALID_BLANK_|",
+    "WRITE_BLANK_|",
     "CHECK_ALPHA_y_0",
     "CHECK_ALPHA_y_1",
     "CHECK_ALPHA_y_2",
@@ -269,6 +291,9 @@
     "TMP_ALPHA_VALID_y_0",
     "TMP_ALPHA_VALID_y_1",
     "TMP_ALPHA_VALID_y_2",
+    "CHECK_BLANK_y",
+    "VALID_BLANK_y",
+    "WRITE_BLANK_y",
     "COPY_INPUT_y",
     "WRITE_y",
     "1_CHECK_FINAL_y",
@@ -277,6 +302,7 @@
     "VALID_STATE_y",
     "1_CHECK_INITIAL_y",
     "2_CHECK_INITIAL_y",
+    "WRITE_INITIAL_y",
     "1_IS_STATE_y_0",
     "2_IS_STATE_y_0",
     "1_IS_STATE_y_1",
@@ -322,6 +348,9 @@
     "TMP_ALPHA_VALID_n_0",
     "TMP_ALPHA_VALID_n_1",
     "TMP_ALPHA_VALID_n_2",
+    "CHECK_BLANK_n",
+    "VALID_BLANK_n",
+    "WRITE_BLANK_n",
     "COPY_INPUT_n",
     "WRITE_n",
     "1_CHECK_FINAL_n",
@@ -330,6 +359,7 @@
     "VALID_STATE_n",
     "1_CHECK_INITIAL_n",
     "2_CHECK_INITIAL_n",
+    "WRITE_INITIAL_n",
     "1_IS_STATE_n_0",
     "2_IS_STATE_n_0",
     "1_IS_STATE_n_1",
@@ -375,6 +405,9 @@
     "TMP_ALPHA_VALID_._0",
     "TMP_ALPHA_VALID_._1",
     "TMP_ALPHA_VALID_._2",
+    "CHECK_BLANK_.",
+    "VALID_BLANK_.",
+    "WRITE_BLANK_.",
     "COPY_INPUT_.",
     "WRITE_.",
     "1_CHECK_FINAL_.",
@@ -383,6 +416,7 @@
     "VALID_STATE_.",
     "1_CHECK_INITIAL_.",
     "2_CHECK_INITIAL_.",
+    "WRITE_INITIAL_.",
     "1_IS_STATE_._0",
     "2_IS_STATE_._0",
     "1_IS_STATE_._1",
@@ -428,6 +462,9 @@
     "TMP_ALPHA_VALID_R_0",
     "TMP_ALPHA_VALID_R_1",
     "TMP_ALPHA_VALID_R_2",
+    "CHECK_BLANK_R",
+    "VALID_BLANK_R",
+    "WRITE_BLANK_R",
     "COPY_INPUT_R",
     "WRITE_R",
     "1_CHECK_FINAL_R",
@@ -436,6 +473,7 @@
     "VALID_STATE_R",
     "1_CHECK_INITIAL_R",
     "2_CHECK_INITIAL_R",
+    "WRITE_INITIAL_R",
     "1_IS_STATE_R_0",
     "2_IS_STATE_R_0",
     "1_IS_STATE_R_1",
@@ -460,6 +498,9 @@
     "2_VALID_STATE_R",
     "1_VALID_ALPHA_R",
     "2_VALID_ALPHA_R",
+    "CHECK_BLANK_~",
+    "VALID_BLANK_~",
+    "WRITE_BLANK_~",
     "CHECK_ALPHA_L_0",
     "CHECK_ALPHA_L_1",
     "CHECK_ALPHA_L_2",
@@ -481,6 +522,9 @@
     "TMP_ALPHA_VALID_L_0",
     "TMP_ALPHA_VALID_L_1",
     "TMP_ALPHA_VALID_L_2",
+    "CHECK_BLANK_L",
+    "VALID_BLANK_L",
+    "WRITE_BLANK_L",
     "COPY_INPUT_L",
     "WRITE_L",
     "1_CHECK_FINAL_L",
@@ -489,6 +533,7 @@
     "VALID_STATE_L",
     "1_CHECK_INITIAL_L",
     "2_CHECK_INITIAL_L",
+    "WRITE_INITIAL_L",
     "1_IS_STATE_L_0",
     "2_IS_STATE_L_0",
     "1_IS_STATE_L_1",
@@ -515,6 +560,7 @@
     "2_VALID_ALPHA_L",
     "IS_R_OR_L",
     "TO_SECTION_HEAD",
+    "TO_BEGIN",
     "CHECK_ALPHA",
     "HALT",
     "TEST",
@@ -3321,6 +3367,246 @@
         "action": "RIGHT"
       }
     ],
+    "1_CHECK_BLANK": [
+      {
+        "read": "0",
+        "to_state": "1_CHECK_BLANK",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "1_CHECK_BLANK",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "1_CHECK_BLANK",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "1_CHECK_BLANK",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "1_CHECK_BLANK",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "1_CHECK_BLANK",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "1_CHECK_BLANK",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "1_CHECK_BLANK",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "1_CHECK_BLANK",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "L",
+        "to_state": "1_CHECK_BLANK",
+        "write": "L",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "2_CHECK_BLANK",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "2_CHECK_BLANK": [
+      {
+        "read": "0",
+        "to_state": "2_CHECK_BLANK",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "2_CHECK_BLANK",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "2_CHECK_BLANK",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "2_CHECK_BLANK",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "2_CHECK_BLANK",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "2_CHECK_BLANK",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "2_CHECK_BLANK",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "2_CHECK_BLANK",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "2_CHECK_BLANK",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "L",
+        "to_state": "2_CHECK_BLANK",
+        "write": "L",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "3_CHECK_BLANK",
+        "write": "|",
+        "action": "LEFT"
+      }
+    ],
+    "3_CHECK_BLANK": [
+      {
+        "read": "0",
+        "to_state": "CHECK_BLANK_0",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "CHECK_BLANK_1",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "CHECK_BLANK_2",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "CHECK_BLANK_3",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "CHECK_BLANK_y",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "CHECK_BLANK_n",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "CHECK_BLANK_.",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "CHECK_BLANK_R",
+        "write": "~",
+        "action": "LEFT"
+      },
+      {
+        "read": "L",
+        "to_state": "CHECK_BLANK_L",
+        "write": "~",
+        "action": "LEFT"
+      }
+    ],
+    "CHECK_BLANK_0": [
+      {
+        "read": "0",
+        "to_state": "VALID_BLANK_0",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "VALID_BLANK_0",
+        "write": "|",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "ALPHA_ERROR",
+        "write": "~",
+        "action": "LEFT"
+      }
+    ],
+    "VALID_BLANK_0": [
+      {
+        "read": "0",
+        "to_state": "WRITE_BLANK_0",
+        "write": "0",
+        "action": "RIGHT"
+      },
+      {
+        "read": "~",
+        "to_state": "ALPHA_ERROR",
+        "write": "~",
+        "action": "RIGHT"
+      }
+    ],
+    "WRITE_BLANK_0": [
+      {
+        "read": "~",
+        "to_state": "TO_BEGIN",
+        "write": "0",
+        "action": "RIGHT"
+      },
+      {
+        "read": "|",
+        "to_state": "WRITE_BLANK_0",
+        "write": "|",
+        "action": "RIGHT"
+      }
+    ],
     "COPY_INPUT_0": [
       {
         "read": "0",
@@ -3854,7 +4140,7 @@
       },
       {
         "read": "0",
-        "to_state": "ALL_VALID",
+        "to_state": "WRITE_INITIAL_0",
         "write": "0",
         "action": "RIGHT"
       },
@@ -3863,6 +4149,74 @@
         "to_state": "STATE_ERROR",
         "write": "~",
         "action": "RIGHT"
+      }
+    ],
+    "WRITE_INITIAL_0": [
+      {
+        "read": "0",
+        "to_state": "WRITE_INITIAL_0",
+        "write": "0",
+        "action": "RIGHT"
+      },
+      {
+        "read": "1",
+        "to_state": "WRITE_INITIAL_0",
+        "write": "1",
+        "action": "RIGHT"
+      },
+      {
+        "read": "2",
+        "to_state": "WRITE_INITIAL_0",
+        "write": "2",
+        "action": "RIGHT"
+      },
+      {
+        "read": "3",
+        "to_state": "WRITE_INITIAL_0",
+        "write": "3",
+        "action": "RIGHT"
+      },
+      {
+        "read": "|",
+        "to_state": "WRITE_INITIAL_0",
+        "write": "|",
+        "action": "RIGHT"
+      },
+      {
+        "read": "y",
+        "to_state": "WRITE_INITIAL_0",
+        "write": "y",
+        "action": "RIGHT"
+      },
+      {
+        "read": "n",
+        "to_state": "WRITE_INITIAL_0",
+        "write": "n",
+        "action": "RIGHT"
+      },
+      {
+        "read": ".",
+        "to_state": "WRITE_INITIAL_0",
+        "write": ".",
+        "action": "RIGHT"
+      },
+      {
+        "read": "R",
+        "to_state": "WRITE_INITIAL_0",
+        "write": "R",
+        "action": "RIGHT"
+      },
+      {
+        "read": "L",
+        "to_state": "WRITE_INITIAL_0",
+        "write": "L",
+        "action": "RIGHT"
+      },
+      {
+        "read": "~",
+        "to_state": "1_CHECK_BLANK",
+        "write": "0",
+        "action": "LEFT"
       }
     ],
     "1_IS_STATE_0_0": [
@@ -6925,6 +7279,54 @@
         "action": "RIGHT"
       }
     ],
+    "CHECK_BLANK_1": [
+      {
+        "read": "1",
+        "to_state": "VALID_BLANK_1",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "VALID_BLANK_1",
+        "write": "|",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "ALPHA_ERROR",
+        "write": "~",
+        "action": "LEFT"
+      }
+    ],
+    "VALID_BLANK_1": [
+      {
+        "read": "1",
+        "to_state": "WRITE_BLANK_1",
+        "write": "1",
+        "action": "RIGHT"
+      },
+      {
+        "read": "~",
+        "to_state": "ALPHA_ERROR",
+        "write": "~",
+        "action": "RIGHT"
+      }
+    ],
+    "WRITE_BLANK_1": [
+      {
+        "read": "~",
+        "to_state": "TO_BEGIN",
+        "write": "1",
+        "action": "RIGHT"
+      },
+      {
+        "read": "|",
+        "to_state": "WRITE_BLANK_1",
+        "write": "|",
+        "action": "RIGHT"
+      }
+    ],
     "COPY_INPUT_1": [
       {
         "read": "0",
@@ -7458,7 +7860,7 @@
       },
       {
         "read": "1",
-        "to_state": "ALL_VALID",
+        "to_state": "WRITE_INITIAL_1",
         "write": "1",
         "action": "RIGHT"
       },
@@ -7467,6 +7869,74 @@
         "to_state": "STATE_ERROR",
         "write": "~",
         "action": "RIGHT"
+      }
+    ],
+    "WRITE_INITIAL_1": [
+      {
+        "read": "0",
+        "to_state": "WRITE_INITIAL_1",
+        "write": "0",
+        "action": "RIGHT"
+      },
+      {
+        "read": "1",
+        "to_state": "WRITE_INITIAL_1",
+        "write": "1",
+        "action": "RIGHT"
+      },
+      {
+        "read": "2",
+        "to_state": "WRITE_INITIAL_1",
+        "write": "2",
+        "action": "RIGHT"
+      },
+      {
+        "read": "3",
+        "to_state": "WRITE_INITIAL_1",
+        "write": "3",
+        "action": "RIGHT"
+      },
+      {
+        "read": "|",
+        "to_state": "WRITE_INITIAL_1",
+        "write": "|",
+        "action": "RIGHT"
+      },
+      {
+        "read": "y",
+        "to_state": "WRITE_INITIAL_1",
+        "write": "y",
+        "action": "RIGHT"
+      },
+      {
+        "read": "n",
+        "to_state": "WRITE_INITIAL_1",
+        "write": "n",
+        "action": "RIGHT"
+      },
+      {
+        "read": ".",
+        "to_state": "WRITE_INITIAL_1",
+        "write": ".",
+        "action": "RIGHT"
+      },
+      {
+        "read": "R",
+        "to_state": "WRITE_INITIAL_1",
+        "write": "R",
+        "action": "RIGHT"
+      },
+      {
+        "read": "L",
+        "to_state": "WRITE_INITIAL_1",
+        "write": "L",
+        "action": "RIGHT"
+      },
+      {
+        "read": "~",
+        "to_state": "1_CHECK_BLANK",
+        "write": "1",
+        "action": "LEFT"
       }
     ],
     "1_IS_STATE_1_0": [
@@ -10529,6 +10999,54 @@
         "action": "RIGHT"
       }
     ],
+    "CHECK_BLANK_2": [
+      {
+        "read": "2",
+        "to_state": "VALID_BLANK_2",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "VALID_BLANK_2",
+        "write": "|",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "ALPHA_ERROR",
+        "write": "~",
+        "action": "LEFT"
+      }
+    ],
+    "VALID_BLANK_2": [
+      {
+        "read": "2",
+        "to_state": "WRITE_BLANK_2",
+        "write": "2",
+        "action": "RIGHT"
+      },
+      {
+        "read": "~",
+        "to_state": "ALPHA_ERROR",
+        "write": "~",
+        "action": "RIGHT"
+      }
+    ],
+    "WRITE_BLANK_2": [
+      {
+        "read": "~",
+        "to_state": "TO_BEGIN",
+        "write": "2",
+        "action": "RIGHT"
+      },
+      {
+        "read": "|",
+        "to_state": "WRITE_BLANK_2",
+        "write": "|",
+        "action": "RIGHT"
+      }
+    ],
     "COPY_INPUT_2": [
       {
         "read": "0",
@@ -11062,7 +11580,7 @@
       },
       {
         "read": "2",
-        "to_state": "ALL_VALID",
+        "to_state": "WRITE_INITIAL_2",
         "write": "2",
         "action": "RIGHT"
       },
@@ -11071,6 +11589,74 @@
         "to_state": "STATE_ERROR",
         "write": "~",
         "action": "RIGHT"
+      }
+    ],
+    "WRITE_INITIAL_2": [
+      {
+        "read": "0",
+        "to_state": "WRITE_INITIAL_2",
+        "write": "0",
+        "action": "RIGHT"
+      },
+      {
+        "read": "1",
+        "to_state": "WRITE_INITIAL_2",
+        "write": "1",
+        "action": "RIGHT"
+      },
+      {
+        "read": "2",
+        "to_state": "WRITE_INITIAL_2",
+        "write": "2",
+        "action": "RIGHT"
+      },
+      {
+        "read": "3",
+        "to_state": "WRITE_INITIAL_2",
+        "write": "3",
+        "action": "RIGHT"
+      },
+      {
+        "read": "|",
+        "to_state": "WRITE_INITIAL_2",
+        "write": "|",
+        "action": "RIGHT"
+      },
+      {
+        "read": "y",
+        "to_state": "WRITE_INITIAL_2",
+        "write": "y",
+        "action": "RIGHT"
+      },
+      {
+        "read": "n",
+        "to_state": "WRITE_INITIAL_2",
+        "write": "n",
+        "action": "RIGHT"
+      },
+      {
+        "read": ".",
+        "to_state": "WRITE_INITIAL_2",
+        "write": ".",
+        "action": "RIGHT"
+      },
+      {
+        "read": "R",
+        "to_state": "WRITE_INITIAL_2",
+        "write": "R",
+        "action": "RIGHT"
+      },
+      {
+        "read": "L",
+        "to_state": "WRITE_INITIAL_2",
+        "write": "L",
+        "action": "RIGHT"
+      },
+      {
+        "read": "~",
+        "to_state": "1_CHECK_BLANK",
+        "write": "2",
+        "action": "LEFT"
       }
     ],
     "1_IS_STATE_2_0": [
@@ -14133,6 +14719,54 @@
         "action": "RIGHT"
       }
     ],
+    "CHECK_BLANK_3": [
+      {
+        "read": "3",
+        "to_state": "VALID_BLANK_3",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "VALID_BLANK_3",
+        "write": "|",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "ALPHA_ERROR",
+        "write": "~",
+        "action": "LEFT"
+      }
+    ],
+    "VALID_BLANK_3": [
+      {
+        "read": "3",
+        "to_state": "WRITE_BLANK_3",
+        "write": "3",
+        "action": "RIGHT"
+      },
+      {
+        "read": "~",
+        "to_state": "ALPHA_ERROR",
+        "write": "~",
+        "action": "RIGHT"
+      }
+    ],
+    "WRITE_BLANK_3": [
+      {
+        "read": "~",
+        "to_state": "TO_BEGIN",
+        "write": "3",
+        "action": "RIGHT"
+      },
+      {
+        "read": "|",
+        "to_state": "WRITE_BLANK_3",
+        "write": "|",
+        "action": "RIGHT"
+      }
+    ],
     "COPY_INPUT_3": [
       {
         "read": "0",
@@ -14666,7 +15300,7 @@
       },
       {
         "read": "3",
-        "to_state": "ALL_VALID",
+        "to_state": "WRITE_INITIAL_3",
         "write": "3",
         "action": "RIGHT"
       },
@@ -14675,6 +15309,74 @@
         "to_state": "STATE_ERROR",
         "write": "~",
         "action": "RIGHT"
+      }
+    ],
+    "WRITE_INITIAL_3": [
+      {
+        "read": "0",
+        "to_state": "WRITE_INITIAL_3",
+        "write": "0",
+        "action": "RIGHT"
+      },
+      {
+        "read": "1",
+        "to_state": "WRITE_INITIAL_3",
+        "write": "1",
+        "action": "RIGHT"
+      },
+      {
+        "read": "2",
+        "to_state": "WRITE_INITIAL_3",
+        "write": "2",
+        "action": "RIGHT"
+      },
+      {
+        "read": "3",
+        "to_state": "WRITE_INITIAL_3",
+        "write": "3",
+        "action": "RIGHT"
+      },
+      {
+        "read": "|",
+        "to_state": "WRITE_INITIAL_3",
+        "write": "|",
+        "action": "RIGHT"
+      },
+      {
+        "read": "y",
+        "to_state": "WRITE_INITIAL_3",
+        "write": "y",
+        "action": "RIGHT"
+      },
+      {
+        "read": "n",
+        "to_state": "WRITE_INITIAL_3",
+        "write": "n",
+        "action": "RIGHT"
+      },
+      {
+        "read": ".",
+        "to_state": "WRITE_INITIAL_3",
+        "write": ".",
+        "action": "RIGHT"
+      },
+      {
+        "read": "R",
+        "to_state": "WRITE_INITIAL_3",
+        "write": "R",
+        "action": "RIGHT"
+      },
+      {
+        "read": "L",
+        "to_state": "WRITE_INITIAL_3",
+        "write": "L",
+        "action": "RIGHT"
+      },
+      {
+        "read": "~",
+        "to_state": "1_CHECK_BLANK",
+        "write": "3",
+        "action": "LEFT"
       }
     ],
     "1_IS_STATE_3_0": [
@@ -16309,6 +17011,9 @@
         "action": "RIGHT"
       }
     ],
+    "CHECK_BLANK_|": [],
+    "VALID_BLANK_|": [],
+    "WRITE_BLANK_|": [],
     "CHECK_ALPHA_y_0": [
       {
         "read": "0",
@@ -17737,6 +18442,54 @@
         "action": "RIGHT"
       }
     ],
+    "CHECK_BLANK_y": [
+      {
+        "read": "y",
+        "to_state": "VALID_BLANK_y",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "VALID_BLANK_y",
+        "write": "|",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "ALPHA_ERROR",
+        "write": "~",
+        "action": "LEFT"
+      }
+    ],
+    "VALID_BLANK_y": [
+      {
+        "read": "y",
+        "to_state": "WRITE_BLANK_y",
+        "write": "y",
+        "action": "RIGHT"
+      },
+      {
+        "read": "~",
+        "to_state": "ALPHA_ERROR",
+        "write": "~",
+        "action": "RIGHT"
+      }
+    ],
+    "WRITE_BLANK_y": [
+      {
+        "read": "~",
+        "to_state": "TO_BEGIN",
+        "write": "y",
+        "action": "RIGHT"
+      },
+      {
+        "read": "|",
+        "to_state": "WRITE_BLANK_y",
+        "write": "|",
+        "action": "RIGHT"
+      }
+    ],
     "COPY_INPUT_y": [
       {
         "read": "0",
@@ -18270,7 +19023,7 @@
       },
       {
         "read": "y",
-        "to_state": "ALL_VALID",
+        "to_state": "WRITE_INITIAL_y",
         "write": "y",
         "action": "RIGHT"
       },
@@ -18279,6 +19032,74 @@
         "to_state": "STATE_ERROR",
         "write": "~",
         "action": "RIGHT"
+      }
+    ],
+    "WRITE_INITIAL_y": [
+      {
+        "read": "0",
+        "to_state": "WRITE_INITIAL_y",
+        "write": "0",
+        "action": "RIGHT"
+      },
+      {
+        "read": "1",
+        "to_state": "WRITE_INITIAL_y",
+        "write": "1",
+        "action": "RIGHT"
+      },
+      {
+        "read": "2",
+        "to_state": "WRITE_INITIAL_y",
+        "write": "2",
+        "action": "RIGHT"
+      },
+      {
+        "read": "3",
+        "to_state": "WRITE_INITIAL_y",
+        "write": "3",
+        "action": "RIGHT"
+      },
+      {
+        "read": "|",
+        "to_state": "WRITE_INITIAL_y",
+        "write": "|",
+        "action": "RIGHT"
+      },
+      {
+        "read": "y",
+        "to_state": "WRITE_INITIAL_y",
+        "write": "y",
+        "action": "RIGHT"
+      },
+      {
+        "read": "n",
+        "to_state": "WRITE_INITIAL_y",
+        "write": "n",
+        "action": "RIGHT"
+      },
+      {
+        "read": ".",
+        "to_state": "WRITE_INITIAL_y",
+        "write": ".",
+        "action": "RIGHT"
+      },
+      {
+        "read": "R",
+        "to_state": "WRITE_INITIAL_y",
+        "write": "R",
+        "action": "RIGHT"
+      },
+      {
+        "read": "L",
+        "to_state": "WRITE_INITIAL_y",
+        "write": "L",
+        "action": "RIGHT"
+      },
+      {
+        "read": "~",
+        "to_state": "1_CHECK_BLANK",
+        "write": "y",
+        "action": "LEFT"
       }
     ],
     "1_IS_STATE_y_0": [
@@ -21341,6 +22162,54 @@
         "action": "RIGHT"
       }
     ],
+    "CHECK_BLANK_n": [
+      {
+        "read": "n",
+        "to_state": "VALID_BLANK_n",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "VALID_BLANK_n",
+        "write": "|",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "ALPHA_ERROR",
+        "write": "~",
+        "action": "LEFT"
+      }
+    ],
+    "VALID_BLANK_n": [
+      {
+        "read": "n",
+        "to_state": "WRITE_BLANK_n",
+        "write": "n",
+        "action": "RIGHT"
+      },
+      {
+        "read": "~",
+        "to_state": "ALPHA_ERROR",
+        "write": "~",
+        "action": "RIGHT"
+      }
+    ],
+    "WRITE_BLANK_n": [
+      {
+        "read": "~",
+        "to_state": "TO_BEGIN",
+        "write": "n",
+        "action": "RIGHT"
+      },
+      {
+        "read": "|",
+        "to_state": "WRITE_BLANK_n",
+        "write": "|",
+        "action": "RIGHT"
+      }
+    ],
     "COPY_INPUT_n": [
       {
         "read": "0",
@@ -21874,7 +22743,7 @@
       },
       {
         "read": "n",
-        "to_state": "ALL_VALID",
+        "to_state": "WRITE_INITIAL_n",
         "write": "n",
         "action": "RIGHT"
       },
@@ -21883,6 +22752,74 @@
         "to_state": "STATE_ERROR",
         "write": "~",
         "action": "RIGHT"
+      }
+    ],
+    "WRITE_INITIAL_n": [
+      {
+        "read": "0",
+        "to_state": "WRITE_INITIAL_n",
+        "write": "0",
+        "action": "RIGHT"
+      },
+      {
+        "read": "1",
+        "to_state": "WRITE_INITIAL_n",
+        "write": "1",
+        "action": "RIGHT"
+      },
+      {
+        "read": "2",
+        "to_state": "WRITE_INITIAL_n",
+        "write": "2",
+        "action": "RIGHT"
+      },
+      {
+        "read": "3",
+        "to_state": "WRITE_INITIAL_n",
+        "write": "3",
+        "action": "RIGHT"
+      },
+      {
+        "read": "|",
+        "to_state": "WRITE_INITIAL_n",
+        "write": "|",
+        "action": "RIGHT"
+      },
+      {
+        "read": "y",
+        "to_state": "WRITE_INITIAL_n",
+        "write": "y",
+        "action": "RIGHT"
+      },
+      {
+        "read": "n",
+        "to_state": "WRITE_INITIAL_n",
+        "write": "n",
+        "action": "RIGHT"
+      },
+      {
+        "read": ".",
+        "to_state": "WRITE_INITIAL_n",
+        "write": ".",
+        "action": "RIGHT"
+      },
+      {
+        "read": "R",
+        "to_state": "WRITE_INITIAL_n",
+        "write": "R",
+        "action": "RIGHT"
+      },
+      {
+        "read": "L",
+        "to_state": "WRITE_INITIAL_n",
+        "write": "L",
+        "action": "RIGHT"
+      },
+      {
+        "read": "~",
+        "to_state": "1_CHECK_BLANK",
+        "write": "n",
+        "action": "LEFT"
       }
     ],
     "1_IS_STATE_n_0": [
@@ -24945,6 +25882,54 @@
         "action": "RIGHT"
       }
     ],
+    "CHECK_BLANK_.": [
+      {
+        "read": ".",
+        "to_state": "VALID_BLANK_.",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "VALID_BLANK_.",
+        "write": "|",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "ALPHA_ERROR",
+        "write": "~",
+        "action": "LEFT"
+      }
+    ],
+    "VALID_BLANK_.": [
+      {
+        "read": ".",
+        "to_state": "WRITE_BLANK_.",
+        "write": ".",
+        "action": "RIGHT"
+      },
+      {
+        "read": "~",
+        "to_state": "ALPHA_ERROR",
+        "write": "~",
+        "action": "RIGHT"
+      }
+    ],
+    "WRITE_BLANK_.": [
+      {
+        "read": "~",
+        "to_state": "TO_BEGIN",
+        "write": ".",
+        "action": "RIGHT"
+      },
+      {
+        "read": "|",
+        "to_state": "WRITE_BLANK_.",
+        "write": "|",
+        "action": "RIGHT"
+      }
+    ],
     "COPY_INPUT_.": [
       {
         "read": "0",
@@ -25478,7 +26463,7 @@
       },
       {
         "read": ".",
-        "to_state": "ALL_VALID",
+        "to_state": "WRITE_INITIAL_.",
         "write": ".",
         "action": "RIGHT"
       },
@@ -25487,6 +26472,74 @@
         "to_state": "STATE_ERROR",
         "write": "~",
         "action": "RIGHT"
+      }
+    ],
+    "WRITE_INITIAL_.": [
+      {
+        "read": "0",
+        "to_state": "WRITE_INITIAL_.",
+        "write": "0",
+        "action": "RIGHT"
+      },
+      {
+        "read": "1",
+        "to_state": "WRITE_INITIAL_.",
+        "write": "1",
+        "action": "RIGHT"
+      },
+      {
+        "read": "2",
+        "to_state": "WRITE_INITIAL_.",
+        "write": "2",
+        "action": "RIGHT"
+      },
+      {
+        "read": "3",
+        "to_state": "WRITE_INITIAL_.",
+        "write": "3",
+        "action": "RIGHT"
+      },
+      {
+        "read": "|",
+        "to_state": "WRITE_INITIAL_.",
+        "write": "|",
+        "action": "RIGHT"
+      },
+      {
+        "read": "y",
+        "to_state": "WRITE_INITIAL_.",
+        "write": "y",
+        "action": "RIGHT"
+      },
+      {
+        "read": "n",
+        "to_state": "WRITE_INITIAL_.",
+        "write": "n",
+        "action": "RIGHT"
+      },
+      {
+        "read": ".",
+        "to_state": "WRITE_INITIAL_.",
+        "write": ".",
+        "action": "RIGHT"
+      },
+      {
+        "read": "R",
+        "to_state": "WRITE_INITIAL_.",
+        "write": "R",
+        "action": "RIGHT"
+      },
+      {
+        "read": "L",
+        "to_state": "WRITE_INITIAL_.",
+        "write": "L",
+        "action": "RIGHT"
+      },
+      {
+        "read": "~",
+        "to_state": "1_CHECK_BLANK",
+        "write": ".",
+        "action": "LEFT"
       }
     ],
     "1_IS_STATE_._0": [
@@ -28549,6 +29602,54 @@
         "action": "RIGHT"
       }
     ],
+    "CHECK_BLANK_R": [
+      {
+        "read": "R",
+        "to_state": "VALID_BLANK_R",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "VALID_BLANK_R",
+        "write": "|",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "ALPHA_ERROR",
+        "write": "~",
+        "action": "LEFT"
+      }
+    ],
+    "VALID_BLANK_R": [
+      {
+        "read": "R",
+        "to_state": "WRITE_BLANK_R",
+        "write": "R",
+        "action": "RIGHT"
+      },
+      {
+        "read": "~",
+        "to_state": "ALPHA_ERROR",
+        "write": "~",
+        "action": "RIGHT"
+      }
+    ],
+    "WRITE_BLANK_R": [
+      {
+        "read": "~",
+        "to_state": "TO_BEGIN",
+        "write": "R",
+        "action": "RIGHT"
+      },
+      {
+        "read": "|",
+        "to_state": "WRITE_BLANK_R",
+        "write": "|",
+        "action": "RIGHT"
+      }
+    ],
     "COPY_INPUT_R": [
       {
         "read": "0",
@@ -29082,7 +30183,7 @@
       },
       {
         "read": "R",
-        "to_state": "ALL_VALID",
+        "to_state": "WRITE_INITIAL_R",
         "write": "R",
         "action": "RIGHT"
       },
@@ -29091,6 +30192,74 @@
         "to_state": "STATE_ERROR",
         "write": "~",
         "action": "RIGHT"
+      }
+    ],
+    "WRITE_INITIAL_R": [
+      {
+        "read": "0",
+        "to_state": "WRITE_INITIAL_R",
+        "write": "0",
+        "action": "RIGHT"
+      },
+      {
+        "read": "1",
+        "to_state": "WRITE_INITIAL_R",
+        "write": "1",
+        "action": "RIGHT"
+      },
+      {
+        "read": "2",
+        "to_state": "WRITE_INITIAL_R",
+        "write": "2",
+        "action": "RIGHT"
+      },
+      {
+        "read": "3",
+        "to_state": "WRITE_INITIAL_R",
+        "write": "3",
+        "action": "RIGHT"
+      },
+      {
+        "read": "|",
+        "to_state": "WRITE_INITIAL_R",
+        "write": "|",
+        "action": "RIGHT"
+      },
+      {
+        "read": "y",
+        "to_state": "WRITE_INITIAL_R",
+        "write": "y",
+        "action": "RIGHT"
+      },
+      {
+        "read": "n",
+        "to_state": "WRITE_INITIAL_R",
+        "write": "n",
+        "action": "RIGHT"
+      },
+      {
+        "read": ".",
+        "to_state": "WRITE_INITIAL_R",
+        "write": ".",
+        "action": "RIGHT"
+      },
+      {
+        "read": "R",
+        "to_state": "WRITE_INITIAL_R",
+        "write": "R",
+        "action": "RIGHT"
+      },
+      {
+        "read": "L",
+        "to_state": "WRITE_INITIAL_R",
+        "write": "L",
+        "action": "RIGHT"
+      },
+      {
+        "read": "~",
+        "to_state": "1_CHECK_BLANK",
+        "write": "R",
+        "action": "LEFT"
       }
     ],
     "1_IS_STATE_R_0": [
@@ -30725,6 +31894,9 @@
         "action": "RIGHT"
       }
     ],
+    "CHECK_BLANK_~": [],
+    "VALID_BLANK_~": [],
+    "WRITE_BLANK_~": [],
     "CHECK_ALPHA_L_0": [
       {
         "read": "0",
@@ -32153,6 +33325,54 @@
         "action": "RIGHT"
       }
     ],
+    "CHECK_BLANK_L": [
+      {
+        "read": "L",
+        "to_state": "VALID_BLANK_L",
+        "write": "L",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "VALID_BLANK_L",
+        "write": "|",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "ALPHA_ERROR",
+        "write": "~",
+        "action": "LEFT"
+      }
+    ],
+    "VALID_BLANK_L": [
+      {
+        "read": "L",
+        "to_state": "WRITE_BLANK_L",
+        "write": "L",
+        "action": "RIGHT"
+      },
+      {
+        "read": "~",
+        "to_state": "ALPHA_ERROR",
+        "write": "~",
+        "action": "RIGHT"
+      }
+    ],
+    "WRITE_BLANK_L": [
+      {
+        "read": "~",
+        "to_state": "TO_BEGIN",
+        "write": "L",
+        "action": "RIGHT"
+      },
+      {
+        "read": "|",
+        "to_state": "WRITE_BLANK_L",
+        "write": "|",
+        "action": "RIGHT"
+      }
+    ],
     "COPY_INPUT_L": [
       {
         "read": "0",
@@ -32686,7 +33906,7 @@
       },
       {
         "read": "L",
-        "to_state": "ALL_VALID",
+        "to_state": "WRITE_INITIAL_L",
         "write": "L",
         "action": "RIGHT"
       },
@@ -32695,6 +33915,74 @@
         "to_state": "STATE_ERROR",
         "write": "~",
         "action": "RIGHT"
+      }
+    ],
+    "WRITE_INITIAL_L": [
+      {
+        "read": "0",
+        "to_state": "WRITE_INITIAL_L",
+        "write": "0",
+        "action": "RIGHT"
+      },
+      {
+        "read": "1",
+        "to_state": "WRITE_INITIAL_L",
+        "write": "1",
+        "action": "RIGHT"
+      },
+      {
+        "read": "2",
+        "to_state": "WRITE_INITIAL_L",
+        "write": "2",
+        "action": "RIGHT"
+      },
+      {
+        "read": "3",
+        "to_state": "WRITE_INITIAL_L",
+        "write": "3",
+        "action": "RIGHT"
+      },
+      {
+        "read": "|",
+        "to_state": "WRITE_INITIAL_L",
+        "write": "|",
+        "action": "RIGHT"
+      },
+      {
+        "read": "y",
+        "to_state": "WRITE_INITIAL_L",
+        "write": "y",
+        "action": "RIGHT"
+      },
+      {
+        "read": "n",
+        "to_state": "WRITE_INITIAL_L",
+        "write": "n",
+        "action": "RIGHT"
+      },
+      {
+        "read": ".",
+        "to_state": "WRITE_INITIAL_L",
+        "write": ".",
+        "action": "RIGHT"
+      },
+      {
+        "read": "R",
+        "to_state": "WRITE_INITIAL_L",
+        "write": "R",
+        "action": "RIGHT"
+      },
+      {
+        "read": "L",
+        "to_state": "WRITE_INITIAL_L",
+        "write": "L",
+        "action": "RIGHT"
+      },
+      {
+        "read": "~",
+        "to_state": "1_CHECK_BLANK",
+        "write": "L",
+        "action": "LEFT"
       }
     ],
     "1_IS_STATE_L_0": [
@@ -34462,6 +35750,74 @@
         "read": "|",
         "to_state": "1_IS_STATE",
         "write": "|",
+        "action": "RIGHT"
+      }
+    ],
+    "TO_BEGIN": [
+      {
+        "read": "0",
+        "to_state": "TO_BEGIN",
+        "write": "0",
+        "action": "LEFT"
+      },
+      {
+        "read": "1",
+        "to_state": "TO_BEGIN",
+        "write": "1",
+        "action": "LEFT"
+      },
+      {
+        "read": "2",
+        "to_state": "TO_BEGIN",
+        "write": "2",
+        "action": "LEFT"
+      },
+      {
+        "read": "3",
+        "to_state": "TO_BEGIN",
+        "write": "3",
+        "action": "LEFT"
+      },
+      {
+        "read": "|",
+        "to_state": "TO_BEGIN",
+        "write": "|",
+        "action": "LEFT"
+      },
+      {
+        "read": "y",
+        "to_state": "TO_BEGIN",
+        "write": "y",
+        "action": "LEFT"
+      },
+      {
+        "read": "n",
+        "to_state": "TO_BEGIN",
+        "write": "n",
+        "action": "LEFT"
+      },
+      {
+        "read": ".",
+        "to_state": "TO_BEGIN",
+        "write": ".",
+        "action": "LEFT"
+      },
+      {
+        "read": "R",
+        "to_state": "TO_BEGIN",
+        "write": "R",
+        "action": "LEFT"
+      },
+      {
+        "read": "L",
+        "to_state": "TO_BEGIN",
+        "write": "L",
+        "action": "LEFT"
+      },
+      {
+        "read": "~",
+        "to_state": "TEST",
+        "write": "~",
         "action": "RIGHT"
       }
     ],
