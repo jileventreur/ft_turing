@@ -9,7 +9,7 @@ type t = {
 }
 
 let extend_size = 256
-let blank = '.'
+let blank = '~'
 
 let create str = {
 	data = Bytes.of_string str;

@@ -41,8 +41,10 @@ let _create_states json =
 		printf "ft_turing : Error states can't be empty\n"; exit fail
 	end else if List.length lst <> List.length slst then begin
 		printf "ft_turing : Error states members must be only composed by strings\n"; exit fail
-	end	else if CL.contains_dup slst then begin
-		printf "ft_turing : Error states can't have duplicates members\n"; exit fail;
+	end;
+	begin match CL.find_a_dup slst with 
+		| None -> ()
+		| Some x -> printf "ft_turing : Error states can't have duplicates members (%s)\n" x; exit fail
 	end;
 	slst
 

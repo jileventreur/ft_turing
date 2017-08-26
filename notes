@@ -1,9 +1,9 @@
 formatage de la machine :
 
-~~|alphabet|blank|states|init|finals|transition|_input|~~
-                                        cursor -^
+alphabet|blank|states|init|finals|transition|_input
+                                     cursor -^
 
-exemple : |1+=.|.|ABC|A|C|A1B.RA.C+RB1A.RB.C=R|_1..1|~~
+exemple : 1+=.|.|ABC|A|C|A1B.RA.C+RB1A.RB.C=R|_1..1
 
 formatage d'execution de la machine :
 	
@@ -22,24 +22,9 @@ Etat : A B C
 		
 -----------------------------------------------
 
-initial : 
-	|1+=.|.|ABC|A|C|A1B.RA.C+RB1A.RB.C=R|_1..1|
+input de la machine ispair : 
+	./ft_turing machines/complete_turing.json "0.yn|.|ABC|A|C|A0B.RA.CyRB0A.RB.CnR|_000"
 
-blank l'alphabet :
-	~~~.|ABC|A|C|A1B.RA.C+RB1A.RB.C=R|_1..1
+La machine accepte 3 etats differents (ABC) pour en ajouter il faut les ajouter dans state_range
 
-creer le registre (depuis initial) :
-	|A?|ABC|A|C|A1B.RA.C+RB1A.RB.C=R|_1..1|
-
-blank la liste d'etat :
-	|A?~~~~|A|C|A1B.RA.C+RB1A.RB.C=R|_1..1|
-
-decaler le registre  :
-	~~~A?|A|C|A1B.RA.C+RB1A.RB.C=R|_1..1|
-
-blank init :
-	~~~A?~~|C|A1B.RA.C+RB1A.RB.C=R|_1..1|
-
-decaler :
-	A?|C|A1B.RA.C+RB1A.RB.C=R|_1..1|
-
+pour compiler le json sh script_compil.sh
