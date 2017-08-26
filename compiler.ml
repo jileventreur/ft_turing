@@ -71,26 +71,232 @@ let generate file input =
 	in
 
 	let _transitions =
-		let _buildAssoc f = let (_, c, n, a) = f "s" in
-			`Assoc [
-				("read", `String c) ;
-				("to_state", `String n) ;
-				("write", `String c) ;
-				("action", `String a)
-			]
-		in List.map _buildAssoc [
-			fun c -> ("INIT", c, "MOVEEND", "RIGHT")
-		]
+		let _buildAssoc (name, f) =
+			let _lst = List.map (fun s ->
+				let (c, n, w, a) = f s in
+				`Assoc [
+					("read", `String c) ;
+					("to_state", `String n) ;
+					("write", `String w) ;
+					("action", `String a)
+				]
+			) (make_alphabet _input)
+			in (name, `List _lst)
+		in List.map _buildAssoc ([
+			("INIT",
+				fun c -> (c, "MOVEEND", c, "RIGHT")) ;
+			("MOVEEND", function "|" -> ("|", "MOVEEND_1", "|", "RIGHT")
+				| c -> (c, "MOVEEND", c, "RIGHT")) ;
+			("CHECK_ALPHA", function "|" -> ("|", "BACK_STATES_1", "|", "RIGHT")
+				| c -> (c, "MOVEBEGIN_" ^ c ^ "_1", "~", "LEFT")) ;
+			("CHECK_STATE", function "|" -> ("|", "BACK_FINALS_1", "|", "RIGHT")
+				| "R" -> ("R", "CHECK_STATE", "R", "RIGHT")
+				| "L" -> ("L", "CHECK_STATE", "L", "RIGHT")
+				| c -> (c, "CHECK_STATE_" ^ c ^ "_1", "~", "LEFT")) ;
+			("CHECK_STATE_ALPHA", function "|" -> ("|", "HALT", "|", "RIGHT")
+				| c -> (c, "CHECK_STATE_ALPHA_" ^ c ^ "_1", "~", "LEFT")) ;
+			("CHECK_FINALS", function "|" -> ("|", "BACK_INITIAL_1", "|", "RIGHT")
+				| c -> (c, "CHECK_FINALS_" ^ c ^ "_1", "~", "LEFT")) ;
+			("CHECK_INITIAL", function "|" -> ("|", "BACK_BLANK_1", "|", "RIGHT")
+				| c -> (c, "CHECK_INITIAL_" ^ c ^ "_1", "~", "LEFT")) ;
+			("CHECK_BLANK", function "|" -> ("|", "MOVEBEGIN", "|", "RIGHT")
+				| c -> (c, "CHECK_BLANK_" ^ c ^ "_1", "~", "LEFT")) ;
+			("MOVEBEGIN", function "~" -> ("~", "HALT", "~", "RIGHT")
+				| c -> (c, "MOVEBEGIN", c, "LEFT"))
+
+		] @ (List.map (
+			function 5 -> ( "MOVEEND_5",
+				function "|" -> ("|", "CHECK_ALPHA", "|", "RIGHT")
+				| c -> (c, "MOVEEND_5", c, "RIGHT")
+			)
+			| i -> ( "MOVEEND_" ^ (string_of_int i),
+				function "|" -> ("|", "MOVEEND_" ^ (string_of_int (i + 1)), "|", "RIGHT")
+				| c -> (c, "MOVEEND_" ^ (string_of_int i), c, "RIGHT")
+			)
+		) [ 1; 2; 3; 4; 5 ]) @ (List.map (
+			function (_c, 6) -> ( "MOVEBEGIN_" ^ _c ^ "_6",
+				function "|" -> ("|", "MATCH_ALPHA_" ^ _c, "|", "LEFT")
+				| c -> (c, "MOVEBEGIN_" ^ _c ^ "_6", c, "LEFT")
+			)
+			| (_c, i) -> ( "MOVEBEGIN_" ^ _c ^ "_" ^ (string_of_int i),
+				function "|" -> ("|", "MOVEBEGIN_" ^ _c ^ "_" ^ (string_of_int (i + 1)), "|", "LEFT")
+				| c -> (c, "MOVEBEGIN_" ^ _c ^ "_" ^ (string_of_int i), c, "LEFT")
+			)
+		) (List.flatten (List.map ( fun x -> List.map ( fun y -> (x, y) ) [1 ; 2; 3; 4; 5; 6] ) (make_alphabet _input) ))
+		) @ (List.map (
+			function _c -> ( "MATCH_ALPHA_" ^ _c,
+				function "|" -> ("|", "ALPHA_ERROR", "|", "LEFT")
+				| c when c = _c -> (c, "WRITE_ALPHA_" ^ _c, c, "RIGHT")
+				| c -> (c, "MATCH_ALPHA_" ^ _c, c, "LEFT")
+			)
+		) (make_alphabet _input)) @ (List.map (
+			function _c -> ( "WRITE_ALPHA_" ^ _c,
+				function "~" -> ("~", "CHECK_ALPHA", _c, "RIGHT")
+				| c -> (c, "WRITE_ALPHA_" ^ _c, c, "RIGHT")
+			)
+		) (make_alphabet _input)) @ (List.map (
+			function 3 -> ( "BACK_STATES_3",
+				function "|" -> ("|", "CHECK_STATE", "|", "RIGHT")
+				| c -> (c, "BACK_STATES_3", c, "LEFT")
+			)
+			| i -> ( "BACK_STATES_" ^ (string_of_int i),
+				function "|" -> ("|", "BACK_STATES_" ^ (string_of_int (i + 1)), "|", "LEFT")
+				| c -> (c, "BACK_STATES_" ^ (string_of_int i), c, "LEFT")
+			)
+		) [ 1; 2; 3 ]) @ (List.map (
+			function (_c, 3) -> ( "CHECK_STATE_" ^ _c ^ "_3",
+				function "|" -> ("|", "MATCH_STATE_" ^ _c, "|", "LEFT")
+				(* | c when c = _c -> (c, "HALT", c, "RIGHT") *)
+				| c -> (c, "CHECK_STATE_" ^ _c ^ "_3", c, "LEFT")
+			)
+			| (_c, i) -> ( "CHECK_STATE_" ^ _c ^ "_" ^ (string_of_int i),
+				function "|" -> ("|", "CHECK_STATE_" ^ _c ^ "_" ^ (string_of_int (i + 1)), "|", "LEFT")
+				(* | c when c = _c -> (c, "HALT", c, "RIGHT") *)
+				| c -> (c, "CHECK_STATE_" ^ _c ^ "_" ^ (string_of_int i), c, "LEFT")
+			)
+		) (List.flatten (List.map ( fun x -> List.map ( fun y -> (x, y) ) [1 ; 2; 3] ) (make_alphabet _input) ))
+		) @ (List.map (
+			function _c -> ( "MATCH_STATE_" ^ _c,
+				function "|" -> ("|", "STATE_ERROR", "|", "LEFT")
+				| c when c = _c -> (c, "WRITE_STATE_" ^ _c, c, "RIGHT")
+				| c -> (c, "MATCH_STATE_" ^ _c, c, "LEFT")
+			)
+		) (make_alphabet _input)) @ (List.map (
+			function _c -> ( "WRITE_STATE_" ^ _c,
+				function "~" -> ("~", "CHECK_STATE_ALPHA", _c, "RIGHT")
+				| c -> (c, "WRITE_STATE_" ^ _c, c, "RIGHT")
+			)
+		) (make_alphabet _input)) @ (List.map (
+			function (_c, 5) -> ( "CHECK_STATE_ALPHA_" ^ _c ^ "_5",
+				function "|" -> ("|", "MATCH_STATE_ALPHA_" ^ _c, "|", "LEFT")
+				(* | c when c = _c -> (c, "HALT", c, "RIGHT") *)
+				| c -> (c, "CHECK_STATE_ALPHA_" ^ _c ^ "_5", c, "LEFT")
+			)
+			| (_c, i) -> ( "CHECK_STATE_ALPHA_" ^ _c ^ "_" ^ (string_of_int i),
+				function "|" -> ("|", "CHECK_STATE_ALPHA_" ^ _c ^ "_" ^ (string_of_int (i + 1)), "|", "LEFT")
+				(* | c when c = _c -> (c, "HALT", c, "RIGHT") *)
+				| c -> (c, "CHECK_STATE_ALPHA_" ^ _c ^ "_" ^ (string_of_int i), c, "LEFT")
+			)
+		) (List.flatten (List.map ( fun x -> List.map ( fun y -> (x, y) ) [1 ; 2; 3; 4; 5] ) (make_alphabet _input) ))
+		) @ (List.map (
+			function _c -> ( "MATCH_STATE_ALPHA_" ^ _c,
+				function "|" -> ("|", "STATE_ERROR", "|", "LEFT")
+				| c when c = _c -> (c, "WRITE_STATE_ALPHA_" ^ _c, c, "RIGHT")
+				| c -> (c, "MATCH_STATE_ALPHA_" ^ _c, c, "LEFT")
+			)
+		) (make_alphabet _input)) @ (List.map (
+			function _c -> ( "WRITE_STATE_ALPHA_" ^ _c,
+				function "~" -> ("~", "CHECK_STATE", _c, "RIGHT")
+				| c -> (c, "WRITE_STATE_ALPHA_" ^ _c, c, "RIGHT")
+			)
+		) (make_alphabet _input)) @ (List.map (
+			function 3 -> ( "BACK_FINALS_3",
+				function "|" -> ("|", "CHECK_FINALS", "|", "RIGHT")
+				| c -> (c, "BACK_FINALS_3", c, "LEFT")
+			)
+			| i -> ( "BACK_FINALS_" ^ (string_of_int i),
+				function "|" -> ("|", "BACK_FINALS_" ^ (string_of_int (i + 1)), "|", "LEFT")
+				| c -> (c, "BACK_FINALS_" ^ (string_of_int i), c, "LEFT")
+			)
+		) [ 1; 2; 3 ]) @ (List.map (
+			function (_c, 2) -> ( "CHECK_FINALS_" ^ _c ^ "_2",
+				function "|" -> ("|", "MATCH_FINAL_" ^ _c, "|", "LEFT")
+				| c -> (c, "CHECK_FINALS_" ^ _c ^ "_2", c, "LEFT")
+			)
+			| (_c, i) -> ( "CHECK_FINALS_" ^ _c ^ "_" ^ (string_of_int i),
+				function "|" -> ("|", "CHECK_FINALS_" ^ _c ^ "_" ^ (string_of_int (i + 1)), "|", "LEFT")
+				| c -> (c, "CHECK_FINALS_" ^ _c ^ "_" ^ (string_of_int i), c, "LEFT")
+			)
+		) (List.flatten (List.map ( fun x -> List.map ( fun y -> (x, y) ) [1; 2] ) (make_alphabet _input) ))
+		) @ (List.map (
+			function _c -> ( "MATCH_FINAL_" ^ _c,
+				function "|" -> ("|", "STATE_ERROR", "|", "LEFT")
+				| c when c = _c -> (c, "WRITE_FINAL_" ^ _c, c, "RIGHT")
+				| c -> (c, "MATCH_FINAL_" ^ _c, c, "LEFT")
+			)
+		) (make_alphabet _input)) @ (List.map (
+			function _c -> ( "WRITE_FINAL_" ^ _c,
+				function "~" -> ("~", "CHECK_FINALS", _c, "RIGHT")
+				| c -> (c, "WRITE_FINAL_" ^ _c, c, "RIGHT")
+			)
+		) (make_alphabet _input)) @ (List.map (
+			function 2 -> ( "BACK_INITIAL_2",
+				function "|" -> ("|", "CHECK_INITIAL", "|", "LEFT")
+				| c -> (c, "BACK_INITIAL_2", c, "LEFT")
+			)
+			| i -> ( "BACK_INITIAL_" ^ (string_of_int i),
+				function "|" -> ("|", "BACK_INITIAL_" ^ (string_of_int (i + 1)), "|", "LEFT")
+				| c -> (c, "BACK_INITIAL_" ^ (string_of_int i), c, "LEFT")
+			)
+		) [ 1; 2 ]) @ (List.map (
+			function (_c, 1) -> ( "CHECK_INITIAL_" ^ _c ^ "_1",
+				function "|" -> ("|", "MATCH_INITIAL_" ^ _c, "|", "LEFT")
+				| c -> (c, "CHECK_INITIAL_" ^ _c ^ "_1", c, "LEFT")
+			)
+			| (_c, i) -> ( "CHECK_INITIAL_" ^ _c ^ "_" ^ (string_of_int i),
+				function "|" -> ("|", "CHECK_INITIAL_" ^ _c ^ "_" ^ (string_of_int (i + 1)), "|", "LEFT")
+				| c -> (c, "CHECK_INITIAL_" ^ _c ^ "_" ^ (string_of_int i), c, "LEFT")
+			)
+		) (List.flatten (List.map ( fun x -> List.map ( fun y -> (x, y) ) [1] ) (make_alphabet _input) ))
+		) @ (List.map (
+			function _c -> ( "MATCH_INITIAL_" ^ _c,
+				function "|" -> ("|", "STATE_ERROR", "|", "LEFT")
+				| c when c = _c -> (c, "WRITE_INITIAL_" ^ _c, c, "RIGHT")
+				| c -> (c, "MATCH_INITIAL_" ^ _c, c, "LEFT")
+			)
+		) (make_alphabet _input)) @ (List.map (
+			function _c -> ( "WRITE_INITIAL_" ^ _c,
+				function "~" -> ("~", "CHECK_INITIAL", _c, "RIGHT")
+				| c -> (c, "WRITE_INITIAL_" ^ _c, c, "RIGHT")
+			)
+		) (make_alphabet _input)) @ (List.map (
+			function 3 -> ( "BACK_BLANK_3",
+				function "|" -> ("|", "CHECK_BLANK", "|", "LEFT")
+				| c -> (c, "BACK_BLANK_3", c, "LEFT")
+			)
+			| i -> ( "BACK_BLANK_" ^ (string_of_int i),
+				function "|" -> ("|", "BACK_BLANK_" ^ (string_of_int (i + 1)), "|", "LEFT")
+				| c -> (c, "BACK_BLANK_" ^ (string_of_int i), c, "LEFT")
+			)
+		) [ 1; 2; 3 ]) @ (List.map (
+			function (_c, 1) -> ( "CHECK_BLANK_" ^ _c ^ "_1",
+				function "|" -> ("|", "MATCH_BLANK_" ^ _c, "|", "LEFT")
+				| c -> (c, "CHECK_BLANK_" ^ _c ^ "_1", c, "LEFT")
+			)
+			| (_c, i) -> ( "CHECK_BLANK_" ^ _c ^ "_" ^ (string_of_int i),
+				function "|" -> ("|", "CHECK_BLANK_" ^ _c ^ "_" ^ (string_of_int (i + 1)), "|", "LEFT")
+				| c -> (c, "CHECK_BLANK_" ^ _c ^ "_" ^ (string_of_int i), c, "LEFT")
+			)
+		) (List.flatten (List.map ( fun x -> List.map ( fun y -> (x, y) ) [1] ) (make_alphabet _input) ))
+		) @ (List.map (
+			function _c -> ( "MATCH_BLANK_" ^ _c,
+				function "|" -> ("|", "STATE_ERROR", "|", "LEFT")
+				| c when c = _c -> (c, "WRITE_BLANK_" ^ _c, c, "RIGHT")
+				| c -> (c, "MATCH_BLANK_" ^ _c, c, "LEFT")
+			)
+		) (make_alphabet _input)) @ (List.map (
+			function _c -> ( "WRITE_BLANK_" ^ _c,
+				function "~" -> ("~", "CHECK_BLANK", _c, "RIGHT")
+				| c -> (c, "WRITE_BLANK_" ^ _c, c, "RIGHT")
+			)
+		) (make_alphabet _input))
+
+		)
 	in
 
+	let __finals = [ `String "HALT" ; `String "ALPHA_ERROR"; `String "STATE_ERROR" ] in
 	let out = `Assoc [
 		("name", (`String ("sim_" ^ name))) ;
 		("alphabet", (`List (List.map (fun s -> `String s) (make_alphabet _input)))) ;
 		("blank", `String "~") ;
+		("states", `List ( (List.map (fun t -> `String (fst t)) _transitions) @ __finals )) ;
 		("initial", `String "INIT") ;
-		("transitions", `List _transitions)
+		("finals", `List __finals) ;
+		("transitions", `Assoc _transitions) ;
 	]
-	in pretty_print out
+	in
+	pretty_print out ;
+	Yojson.Basic.to_file (member "name" out |> to_string) out
 
 let () =
 	match Array.length Sys.argv with
