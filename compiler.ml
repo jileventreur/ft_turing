@@ -51,11 +51,16 @@ let generate file input =
 		"|" ^ _transitions (transitions json) ^
 		"|" ^ input ^ "|"
 	in
+
 	print_endline _input ;
 	let name =
 		ignore (Str.search_forward (Str.regexp "/\\(.*\\)") file 0) ;
 		Str.matched_group 1 file
 	in
+
+	let oc = open_out ("./input_" ^ name) in
+	Printf.fprintf oc "%s\n" _input;
+	close_out oc;
 
 	let make_alphabet input =
 		let rec _loop i str lst =
@@ -67,7 +72,7 @@ let generate file input =
 		else
 			lst
 		in
-		_loop 0 input [ "~"; "L"; "R" ]
+		_loop 0 input [ "~"; "L"; "R"; "_" ]
 	in
 
 	let _transitions =
@@ -84,7 +89,7 @@ let generate file input =
 			in (name, `List _lst)
 		in List.map _buildAssoc ([
 			("INIT",
-				fun c -> (c, "MOVEEND", c, "RIGHT")) ;
+				function c -> (c, "MOVEEND", c, "RIGHT")) ;
 			("MOVEEND", function "|" -> ("|", "MOVEEND_1", "|", "RIGHT")
 				| c -> (c, "MOVEEND", c, "RIGHT")) ;
 			("CHECK_ALPHA", function "|" -> ("|", "BACK_STATES_1", "|", "RIGHT")
@@ -101,8 +106,12 @@ let generate file input =
 				| c -> (c, "CHECK_INITIAL_" ^ c ^ "_1", "~", "LEFT")) ;
 			("CHECK_BLANK", function "|" -> ("|", "MOVEBEGIN", "|", "RIGHT")
 				| c -> (c, "CHECK_BLANK_" ^ c ^ "_1", "~", "LEFT")) ;
-			("MOVEBEGIN", function "~" -> ("~", "HALT", "~", "RIGHT")
-				| c -> (c, "MOVEBEGIN", c, "LEFT"))
+			("MOVEBEGIN", function "~" -> ("~", "ERASE_1", "~", "RIGHT")
+				| c -> (c, "MOVEBEGIN", c, "LEFT")) ;
+			("WRITE_RIGHT", function "~" -> ("~", "TEST", "~", "RIGHT")
+				| c -> (c, "WRITE_RIGHT_" ^ c, "_", "RIGHT")) ;
+			("MOVESTART", function "~" -> ("~", "TEST", "~", "RIGHT")
+				| c -> (c, "MOVESTART", c, "LEFT"))
 
 		] @ (List.map (
 			function 5 -> ( "MOVEEND_5",
@@ -279,12 +288,35 @@ let generate file input =
 				function "~" -> ("~", "CHECK_BLANK", _c, "RIGHT")
 				| c -> (c, "WRITE_BLANK_" ^ _c, c, "RIGHT")
 			)
+		) (make_alphabet _input)) @ (List.map (
+			function 5 -> ( "ERASE_5",
+				function "|" -> ("|", "MOVE_RIGHT_1", "|", "RIGHT")
+				| c -> (c, "ERASE_5", "~", "RIGHT")
+			)
+			| i -> ( "ERASE_" ^ (string_of_int i),
+				function "|" -> ("|", "ERASE_" ^ (string_of_int (i + 1)), "~", "RIGHT")
+				| c -> (c, "ERASE_" ^ (string_of_int i), "~", "RIGHT")
+			)
+		) [ 1; 2; 3; 4; 5 ]) @ (List.map (
+			function 2 -> ( "MOVE_RIGHT_2",
+				function "|" -> ("|", "WRITE_RIGHT", "|", "RIGHT")
+				| c -> (c, "MOVE_RIGHT_2", c, "RIGHT")
+			)
+			| i -> ( "MOVE_RIGHT_" ^ (string_of_int i),
+				function "|" -> ("|", "MOVE_RIGHT_" ^ (string_of_int (i + 1)), "|", "RIGHT")
+				| c -> (c, "MOVE_RIGHT_" ^ (string_of_int i), c, "RIGHT")
+			)
+		) [ 1; 2 ]) @ (List.map (
+			function _c -> ( "WRITE_RIGHT_" ^ _c,
+				function "~" -> ("~", "MOVESTART", _c, "LEFT")
+				| c -> (c, "WRITE_RIGHT_" ^ c, _c, "RIGHT")
+			)
 		) (make_alphabet _input))
 
 		)
 	in
 
-	let __finals = [ `String "HALT" ; `String "ALPHA_ERROR"; `String "STATE_ERROR" ] in
+	let __finals = [ `String "HALT" ; `String "ALPHA_ERROR"; `String "STATE_ERROR"; `String "TEST" ] in
 	let out = `Assoc [
 		("name", (`String ("sim_" ^ name))) ;
 		("alphabet", (`List (List.map (fun s -> `String s) (make_alphabet _input)))) ;
