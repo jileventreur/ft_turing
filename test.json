@@ -30221,9 +30221,9 @@
       },
       {
         "read": "|",
-        "to_state": "WRITE_RIGHT_|",
+        "to_state": "MOVESTART",
         "write": "~",
-        "action": "RIGHT"
+        "action": "LEFT"
       },
       {
         "read": "0",
@@ -30295,9 +30295,9 @@
       },
       {
         "read": "|",
-        "to_state": "WRITE_RIGHT_|",
+        "to_state": "MOVESTART",
         "write": "L",
-        "action": "RIGHT"
+        "action": "LEFT"
       },
       {
         "read": "0",
@@ -30369,9 +30369,9 @@
       },
       {
         "read": "|",
-        "to_state": "WRITE_RIGHT_|",
+        "to_state": "MOVESTART",
         "write": "R",
-        "action": "RIGHT"
+        "action": "LEFT"
       },
       {
         "read": "0",
@@ -30443,9 +30443,9 @@
       },
       {
         "read": "|",
-        "to_state": "WRITE_RIGHT_|",
+        "to_state": "MOVESTART",
         "write": "_",
-        "action": "RIGHT"
+        "action": "LEFT"
       },
       {
         "read": "0",
@@ -30517,9 +30517,9 @@
       },
       {
         "read": "|",
-        "to_state": "WRITE_RIGHT_|",
+        "to_state": "MOVESTART",
         "write": "|",
-        "action": "RIGHT"
+        "action": "LEFT"
       },
       {
         "read": "0",
@@ -30591,9 +30591,9 @@
       },
       {
         "read": "|",
-        "to_state": "WRITE_RIGHT_|",
+        "to_state": "MOVESTART",
         "write": "0",
-        "action": "RIGHT"
+        "action": "LEFT"
       },
       {
         "read": "0",
@@ -30665,9 +30665,9 @@
       },
       {
         "read": "|",
-        "to_state": "WRITE_RIGHT_|",
+        "to_state": "MOVESTART",
         "write": "y",
-        "action": "RIGHT"
+        "action": "LEFT"
       },
       {
         "read": "0",
@@ -30739,9 +30739,9 @@
       },
       {
         "read": "|",
-        "to_state": "WRITE_RIGHT_|",
+        "to_state": "MOVESTART",
         "write": "n",
-        "action": "RIGHT"
+        "action": "LEFT"
       },
       {
         "read": "0",
@@ -30813,9 +30813,9 @@
       },
       {
         "read": "|",
-        "to_state": "WRITE_RIGHT_|",
+        "to_state": "MOVESTART",
         "write": ".",
-        "action": "RIGHT"
+        "action": "LEFT"
       },
       {
         "read": "0",
@@ -30887,9 +30887,9 @@
       },
       {
         "read": "|",
-        "to_state": "WRITE_RIGHT_|",
+        "to_state": "MOVESTART",
         "write": "A",
-        "action": "RIGHT"
+        "action": "LEFT"
       },
       {
         "read": "0",
@@ -30961,9 +30961,9 @@
       },
       {
         "read": "|",
-        "to_state": "WRITE_RIGHT_|",
+        "to_state": "MOVESTART",
         "write": "B",
-        "action": "RIGHT"
+        "action": "LEFT"
       },
       {
         "read": "0",
@@ -31035,9 +31035,9 @@
       },
       {
         "read": "|",
-        "to_state": "WRITE_RIGHT_|",
+        "to_state": "MOVESTART",
         "write": "C",
-        "action": "RIGHT"
+        "action": "LEFT"
       },
       {
         "read": "0",

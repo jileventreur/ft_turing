@@ -308,6 +308,7 @@ let generate file input =
 		) [ 1; 2; 3; 4; 5; 6; 7 ]) @ (List.map (
 			function _c -> ( "WRITE_RIGHT_" ^ _c,
 				function "~" -> ("~", "MOVESTART", _c, "LEFT")
+				| "|" -> ("|", "MOVESTART", _c, "LEFT")
 				| c -> (c, "WRITE_RIGHT_" ^ c, _c, "RIGHT")
 			)
 		) (make_alphabet _input))
