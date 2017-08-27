@@ -959,7 +959,9 @@
     "HALT",
     "ALPHA_ERROR",
     "STATE_ERROR",
-    "TEST"
+    "TEST",
+    "END",
+    "Sub_undefined"
   ],
   "transitions": {
     "INIT": [

@@ -2,30 +2,15 @@
 # @Date:   2017-08-26T01:32:00+02:00
 # @Email:  adebray@student.42.fr
 # @Last modified by:   adebray
-# @Last modified time: 2017-08-27T02:00:38+02:00
+# @Last modified time: 2017-08-27T17:49:50+02:00
 
-ocamlfind ocamlc -thread -package str,yojson -linkpkg ft_compiler.ml -o ft_compiler &&
-./ft_compiler $1 $2 &&
+ocamlfind ocamlc -thread -package str,yojson -linkpkg compiler/ft_compiler.ml -o compiler/ft_compiler &&
+./compiler/ft_compiler $1 $2 &&
 ocamlfind ocamlopt -thread -package core,yojson -I ./compiler -c compiler/compiler.ml &&
 ocamlfind ocamlopt -linkpkg -thread -package core,yojson -o compiler/compile ./compiler/compiler.cmx &&
-rm -rf machines/complete_turing.json && ./compiler/compile &&
-mv complete_turing.json machines
+rm -rf machines/complete_turing.json &&
+./compiler/compile &&
 
-node <<EOF
-let check = require("./sim_ispair.json")
-let exec = require("./machines/complete_turing.json")
-
-check.transitions["ERASE"] = check.transitions["ERASE"].map( e => {
-	if (e.to_state == "TEST")
-		e.to_state = exec.initial
-	return e
-})
-
-check.states = check.states.concat(exec.states).filter(function(item, pos, a) {
-    return a.indexOf(item) == pos;
-})
-check.transitions = Object.assign(check.transitions, exec.transitions)
-
-require('fs').writeFileSync('test.json', JSON.stringify(check, null, "  "))
-
-EOF
+node res/do_compile.js complete_turing.json sim_${1:t} &&
+./ft_turing $3 $4 ./test.json `cat input_${1:t}` &&
+rm -rf complete_turing.json sim_${1:t} input_${1:t}
