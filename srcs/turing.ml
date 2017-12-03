@@ -59,7 +59,7 @@ let rec exec pretty color tape data =
 				_print_transition_switch data i read ;
 				if pretty then begin
 					flush stdout ;
-					ignore( Unix.select [] [] [] 0.05 ) ;
+					ignore( Unix.select [] [] [] 0.01 ) ;
 					print_string "\027M\027[2K";
 					flush stdout
 				end ;

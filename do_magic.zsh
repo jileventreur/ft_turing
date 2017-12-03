@@ -14,4 +14,4 @@ rm -rf machines/complete_turing.json &&
 
 node res/do_compile.js complete_turing.json sim_${1:t} &&
 ./ft_turing $3 $4 ./test.json `cat input_${1:t}` &&
-rm -rf complete_turing.json sim_${1:t} input_${1:t}
+# rm -rf complete_turing.json

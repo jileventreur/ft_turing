@@ -44,9 +44,9 @@ let _create_transition tab (parsing : parsing) json =
 	let index = int_of_char @@ String.get read 0 in
 	let verif_transition_members =
 		if not (is_char read) then begin
-			printf "ft_turing : Error read value must be a char\n" ; exit fail
+			printf "ft_turing : Error read value must be a char %s\n" read ; exit fail
 		end else if not (Json_utils.CharSet.mem (String.get read 0) parsing.alphabet) then begin
-			printf "ft_turing : Error read must be part of alphabet\n"; exit fail
+			printf "ft_turing : Error read must be part of alphabet %s\n" read ; exit fail
 		end else if (Array.get tab index <> Undefined) then begin
 			printf "ft_turing : Error one char readed must be associate with only one transition [%s]\n" to_state; exit fail
 		end else if not (is_char write) then begin
