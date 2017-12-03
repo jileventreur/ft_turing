@@ -1,0 +1,40 @@
+{
+	"name"    : "is_palindrome",
+	"alphabet": [ "0", "1", "y", "n", "." ],
+	"blank"   : ".",
+	"states"  : [ "init", "get_last_one", "is_one", "is_zero", "most_right_and_no", "get_first_zero", "HALT" ],
+	"initial" : "init",
+	"finals"  : [ "HALT"],
+	"transitions" : {
+		"init": [
+			{ "read" : "0", "to_state": "get_last_one", "write": "0", "action": "RIGHT"},
+			{ "read" : "1", "to_state": "most_right_and_no", "write": "1", "action": "RIGHT"},
+			{ "read" : ".", "to_state": "HALT", "write": "y", "action": "RIGHT"}
+		],
+		"get_last_one": [
+			{ "read" : "1", "to_state": "get_last_one", "write": "1", "action": "RIGHT"},
+			{ "read" : "0", "to_state": "get_last_one", "write": "0", "action": "RIGHT"},
+			{ "read" : ".", "to_state": "is_one", "write": ".", "action": "LEFT"}
+		],
+		"is_one": [
+			{ "read" : "1", "to_state": "get_first_zero", "write": ".", "action": "LEFT"},
+			{ "read" : "0", "to_state": "HALT", "write": "n", "action": "RIGHT"},
+			{ "read" : ".", "to_state": "HALT", "write": "y", "action": "RIGHT"}
+		],
+		"get_first_zero": [
+			{ "read" : "1", "to_state": "get_first_zero", "write": "1", "action": "LEFT"},
+			{ "read" : "0", "to_state": "get_first_zero", "write": "0", "action": "LEFT"},
+			{ "read" : ".", "to_state": "is_zero", "write": ".", "action": "RIGHT"}
+		],
+		"is_zero": [
+			{ "read" : "0", "to_state": "init", "write": ".", "action": "RIGHT"},
+			{ "read" : "1", "to_state": "most_right_and_no", "write": "1", "action": "RIGHT"},
+			{ "read" : ".", "to_state": "HALT", "write": "y", "action": "RIGHT"}
+		],
+		"most_right_and_no": [
+			{ "read" : "1", "to_state": "most_right_and_no", "write": "1", "action": "RIGHT"},
+			{ "read" : "0", "to_state": "most_right_and_no", "write": "0", "action": "RIGHT"},
+			{ "read" : ".", "to_state": "HALT", "write": "n", "action": "RIGHT"}
+		]
+	}
+}

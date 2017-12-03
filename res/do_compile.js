@@ -15,9 +15,6 @@
 if (process.argv.length != 4)
 	console.log("usage: ./do_compile checkjson execjson")
 
-console.log( require('fs').readdirSync("./") )
-console.log( process.cwd() )
-
 let check = require("../" + process.argv[3])
 let exec = require("../" + process.argv[2])
 
